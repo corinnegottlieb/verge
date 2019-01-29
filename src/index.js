@@ -6,7 +6,6 @@ import * as serviceWorker from './serviceWorker';
 import { Provider } from 'mobx-react'
 import LumberYard from './stores/LumberYard'
 
-
 const stores = {LumberYard}
 ReactDOM.render(<Provider {...stores}>
 <App />

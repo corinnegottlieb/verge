@@ -21,16 +21,16 @@ class Topic {
         console.log(this.name)
        this.children = dataObject.children
        console.log(this.children)
-    let currentTopic = new Topic(dataObject)
-    console.log(currentTopic)
+    // let currentTopic = new Topic(dataObject)
+    // console.log(currentTopic)
     }
 }
 
-export default Topic
+let currentTopic = new Topic()
 
-let sampleTopic = new Topic()
+export default currentTopic
 
 // export default sampleTopic
 
-sampleTopic.getTopic()
+console.log(currentTopic.getTopic())
 
