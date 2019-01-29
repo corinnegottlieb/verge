@@ -10,3 +10,8 @@ export default class Rank extends Component {
     )
   }
 }
+
+/*
+To do
+- button (i tag) functionality
+*/
