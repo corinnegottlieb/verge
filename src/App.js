@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import './App.css';
 import { observer } from 'mobx-react'
-import Tor from './components/Tor';
+import NavBar from './components/NavBar/Navbar';
+import Topic from './components/TreeOfResults/Topic';
 
 @observer
 class App extends Component {
   render() {
     return (
-      <div className="App">
-          <Tor/>
-      </div>
+      <Router>
+        <div className="App">
+          <NavBar />
+          <Topic />
+        </div>
+      </Router>
     );
   }
 }

@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
-const api = require(`./src/server/routes/api`)
+const api = require(`./server/routes/api`)
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
