@@ -10,3 +10,8 @@ export default class SearchBar extends Component {
     )
   }
 }
+
+/*
+To do
+- button functionality
+*/
