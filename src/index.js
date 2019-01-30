@@ -11,7 +11,6 @@ const stores = { LumberYard, SearchHandler }
 
 ReactDOM.render(<Provider {...stores}>
   <App />
-</Provider>
-  , document.getElementById('root'));
+</Provider>, document.getElementById('root'));
 
 serviceWorker.unregister();

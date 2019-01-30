@@ -28,7 +28,7 @@ class Forest {
         let topicData = await requester.getNewTopicData(searchValue)
         console.log(topicData)
         let TOR = new Topic(topicData)
-        console.log(TOR)
+        // console.log(TOR)
         this.currentTOR = TOR
     }
 
@@ -59,12 +59,12 @@ class Forest {
 
 let verge = new Forest()
 
-let TOR = async () => {
-    await verge.getNewTOR()
-    console.log(verge.currentTOR)
-}
+// let TOR = async () => {
+//     await verge.getNewTOR()
+//     console.log(verge.currentTOR)
+// }
 
-TOR()
+// TOR()
 
 
 export default verge
