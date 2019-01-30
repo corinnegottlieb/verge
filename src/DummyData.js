@@ -70,14 +70,15 @@ const dummyData = {
 
 
             ]
-        },{
+        }, {
 
             value: {
                 name: "Arts",
                 link: "https://en.wikipedia.org/wiki/Samurai#Arts"
             },
             children: []
-        }]}
+        }]
+}
 
 
 module.exports = dummyData
