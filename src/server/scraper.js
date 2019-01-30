@@ -54,13 +54,13 @@ class Scraper {
         let liData = await this.parseHTML(liHTML)
         if (liData.children.length === 0) {
             parent.children.push(liData)
-            // console.log(liData)
+            console.log(liData)
             return null
         }
         //else if children array has items:
         parent.children.push({name: liData.name, children: []})
         const loopLength = liData.children.length
-        // console.log(liData)
+        console.log(liData)
         for (let i = 0; i < loopLength; i++) {
             await this.fillTopic(liData, liData.children[i])
         }
@@ -73,9 +73,9 @@ class Scraper {
 
 }
 
-// const scraper = new Scraper(`Baba ghanoush`)
-// scraper.generateURL()
-// scraper.fillTopic()
+const scraper = new Scraper(`Baba ghanoush`)
+scraper.generateURL()
+scraper.fillTopic()
 
 
 

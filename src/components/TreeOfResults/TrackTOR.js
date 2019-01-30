@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
+import { observer, inject } from 'mobx-react';
 
-export default class TrackTOR extends Component {
+@inject("LumberYard")
+@observer
+class TrackTOR extends Component {
   render() {
     return (
       <label>
-        <input type="checkbox" className="filled-in" />
+        <input type="checkbox" className="filled-in" onClick={this.props.LumberYard.trackTOR} />
         <span>Track Tree</span>
       </label>
     )
   }
 }
+
+export default TrackTOR
