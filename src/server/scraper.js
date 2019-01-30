@@ -3,9 +3,9 @@ const rp = require('request-promise');
 const tempURL = `https://en.wikipedia.org/wiki/Samurai`;
 
 class Scraper {
-    constructor(url) {
-        this.searchName = `Samurai`
-        this.url = url,
+    constructor(searchQuery) {
+        this.searchQuery = searchQuery,
+        this.url = null,
         this.html = ''
         this.topic = {
             name: '',
@@ -21,11 +21,16 @@ class Scraper {
                 console.log(toc)
         })
     }
-    
-    async getHTML(searchQuery) {
-        
 
-        const response = await rp(this.url)
+    generateURL() {
+        let word = this.searchQuery.split(' ').join(`_`)
+        let url = `https://en.wikipedia.org/wiki/${word}`
+        this.url = url
+    }
+    
+    async getHTML() {
+        const url = this.url
+        const response = await rp(url)
         const $ = cheerio.load(response)
         const toc = $(`#toc`).html()
         return toc
@@ -68,7 +73,8 @@ class Scraper {
 
 }
 
-const scraper = new Scraper(tempURL)
+const scraper = new Scraper(`Baba ghanoush`)
+scraper.generateURL()
 scraper.fillTopic()
 
 
