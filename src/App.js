@@ -13,8 +13,12 @@ class App extends Component {
       <Router>
         <div className="App">
           <NavBar />
+<<<<<<< HEAD
+           <Topic />
+=======
           <WikiView />
           <Topic />
+>>>>>>> master
         </div>
       </Router>
     );

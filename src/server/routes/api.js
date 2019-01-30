@@ -1,20 +1,10 @@
 const express = require(`express`)
 const router = express.Router()
 
-const data=require(`../../DummyData`)
+// const data=require(`../../DummyData`)
+const Scraper = require(`../scraper`)
 
-const Topic = require(`../models/Topic`)
-
-
-// GETS NEW TOPIC INFO FROM USER INPUT
-router.get(`/topic/:topicName`, (req, res) => {
-    // request to the Guyscraper using {req.params.topicName}, (error, response, body) => {
-        // let data = JSON.parse(body)
-        // res.send(data)
-let tree = data.dummydata
-console.log(tree)
-res.send(tree)
-    })
+const Topic = require(`../models/TOR`)
 
 
 // GETS LIST OF SAVED TREE NAMES FROM DB
@@ -22,6 +12,18 @@ router.get('/tracked', async function(req, res){
    let trackedTORSs = await Topic.find({}).select('id name')
         res.send(trackedTORSs)    
     }) 
+
+
+// GETS NEW TOPIC INFO FROM USER INPUT
+router.get(`/topic/:searchValue`, (req, res) => {
+    const searchQuery = req.params.searchValue
+    const scraper = new Scraper(searchQuery)
+    scraper.generateURL()
+    scraper.fillTopic()
+console.log(scraper.topic)
+res.send(scraper.topic)
+    })
+
 
  // GETS SPECIFIC SAVED TOR FROM DB
 router.get('/tracked/:id', async function(req, res){  
