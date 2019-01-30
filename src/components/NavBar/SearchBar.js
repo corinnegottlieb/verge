@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 
-@inject("TESTstore", "SearchHandler")
+@inject("LumberYard", "SearchHandler")
 @observer
 class SearchBar extends Component {
 

@@ -3,7 +3,7 @@ import { observer, inject } from 'mobx-react';
 import SubSubTopic from './SubSubTopic';
 
 
-@inject("TESTstore")
+@inject("LumberYard")
 @observer
 class Subtopic extends Component {
 
