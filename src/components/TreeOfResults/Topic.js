@@ -9,10 +9,11 @@ class Topic extends Component {
 
 
     render() {
+        console.log(this.props.LumberYard.currentTOR.value || {})
         return (<div>
-         <h1>{this.props.LumberYard.name}</h1>
-         {this.props.LumberYard.children.map(child=>
-            <Subtopic key={child.value.name} child={child}/>)}
+            <h1>{this.props.LumberYard.currentTOR.value ? this.props.LumberYard.currentTOR.value.value.name : null}</h1>
+            {this.props.LumberYard.currentTOR.value ? this.props.LumberYard.currentTOR.value.children.map(child =>
+                <Subtopic key={child.value.name} child={child} />): null}
         </div>)
     }
 }

@@ -8,7 +8,6 @@ import SubSubTopic from './SubSubTopic';
 class Subtopic extends Component {
 
     render() {
-        console.log(this.props.child.children.length)
         return (<div>
         <h2>{this.props.child.value.name}</h2>
         {this.props.child.children.length > 0 ?
