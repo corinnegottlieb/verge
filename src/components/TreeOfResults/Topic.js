@@ -12,7 +12,7 @@ class Topic extends Component {
         return (<div>
          <h1>{this.props.LumberYard.name}</h1>
          {this.props.LumberYard.children.map(child=>
-            <Subtopic key={child} child={child}/>)}
+            <Subtopic key={child.value.name} child={child}/>)}
         </div>)
     }
 }
