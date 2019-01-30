@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 
 export default class LoadSaved extends Component {
+
+  loadSavedTree = () => {
+
+  }
+
   render() {
     return (
       <div>

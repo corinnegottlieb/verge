@@ -4,12 +4,14 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'mobx-react'
-import LumberYard from './stores/LumberYard'
+import TESTstore from './stores/TESTstore'
+import SearchHandler from './stores/SearchHandler'
 
-const stores = {LumberYard}
+const stores = { TESTstore, SearchHandler }
+
 ReactDOM.render(<Provider {...stores}>
-<App />
+  <App />
 </Provider>
-, document.getElementById('root'));
+  , document.getElementById('root'));
 
 serviceWorker.unregister();

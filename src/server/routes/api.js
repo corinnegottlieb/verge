@@ -1,7 +1,8 @@
 const express = require(`express`)
 const router = express.Router()
 
-const data=require(`../../DummyData`)
+// const data=require(`../../DummyData`)
+const Scraper = require(`../scraper`)
 
 const Topic = require(`../models/TOR`)
 
@@ -14,13 +15,13 @@ router.get('/tracked', async function(req, res){
 
 
 // GETS NEW TOPIC INFO FROM USER INPUT
-router.get(`/topic/dummyData`, (req, res) => {
-    // request to the Guyscraper using {req.params.topicName}, (error, response, body) => {
-        // let data = JSON.parse(body)
-        // res.send(data)
-        let TOR = data
-console.log(TOR)
-res.send(TOR)
+router.get(`/topic/:searchValue`, (req, res) => {
+    const searchQuery = req.params.searchValue
+    const scraper = new Scraper(searchQuery)
+    scraper.generateURL()
+    scraper.fillTopic()
+console.log(scraper.topic)
+res.send(scraper.topic)
     })
 
 

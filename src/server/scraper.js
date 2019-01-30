@@ -2,16 +2,15 @@ const cheerio = require('cheerio');
 const rp = require('request-promise');
 const tempURL = `https://en.wikipedia.org/wiki/Samurai`;
 
-class Topic {
-    constructor() {
-        
-
-    }
-}
-
 class Scraper {
-    constructor(url) {
-        this.url = url
+    constructor(searchQuery) {
+        this.searchQuery = searchQuery,
+        this.url = null,
+        this.html = ''
+        this.topic = {
+            name: '',
+            children: []
+        }
     }
 
     sanity() {
@@ -22,41 +21,62 @@ class Scraper {
                 console.log(toc)
         })
     }
+
+    generateURL() {
+        let word = this.searchQuery.split(' ').join(`_`)
+        let url = `https://en.wikipedia.org/wiki/${word}`
+        this.url = url
+    }
     
     async getHTML() {
-        const response = await rp(this.url)
+        const url = this.url
+        const response = await rp(url)
         const $ = cheerio.load(response)
         const toc = $(`#toc`).html()
         return toc
     }
 
-    async retrieveChildren(html) {
-        const data = await this.getHTML()
-        const $ = cheerio.load(data)
-        const liArray = []
+    async parseHTML(html = null) {
+        const tempHTML = !html ? await this.getHTML() : html  
+        const $ = cheerio.load(tempHTML)
+        const liData = {
+            name: '',
+            children: []
+        }
         $(`ul`).first().children(`li`).each(function(i, element) {
-            liArray.push($(this).html())
+            liData.children.push($(this).html())
         })
-        return liArray
+        liData.name = $(`a`).children(`.toctext`).html() || this.searchName
+        return liData
     }
-
-    async fillObject(parent, liMarkup) {
-        const childrenArray = this.retrieveChildren()
-        const liObject = new Topic()
-        if (!childranArray) {
-            parent[liObject.liName] = liObject;
+    
+    async fillTopic(parent = this.topic, liHTML = null) {
+        let liData = await this.parseHTML(liHTML)
+        if (liData.children.length === 0) {
+            parent.children.push(liData)
+            console.log(liData)
             return null
         }
-        childrenArray.foreEach(c => {
-            fillObject(liObject, c)
-        })
+        //else if children array has items:
+        parent.children.push({name: liData.name, children: []})
+        const loopLength = liData.children.length
+        console.log(liData)
+        for (let i = 0; i < loopLength; i++) {
+            await this.fillTopic(liData, liData.children[i])
+        }
+    }
 
+    async test() {
+        await this.fillTopic()
+        console.log(this.topic)
     }
 
 }
 
-const scraper = new Scraper(tempURL)
-scraper.retrieveChildren()
+const scraper = new Scraper(`Baba ghanoush`)
+scraper.generateURL()
+scraper.fillTopic()
 
 
-// module.exports = Scraper;
+
+module.exports = Scraper;

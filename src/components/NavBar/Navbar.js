@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import SearchBar from './SearchBar';
-import BackButton from './BackButton';
 import LoadSaved from './LoadSaved';
 
-export default class NavBar extends Component {
+class NavBar extends Component {
   render() {
     return (
       <div>
@@ -16,9 +15,10 @@ export default class NavBar extends Component {
           </div>
         </nav>
         <SearchBar />
-        <BackButton />
         <LoadSaved />
       </div>
     )
   }
 }
+
+export default NavBar

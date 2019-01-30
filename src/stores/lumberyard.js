@@ -8,7 +8,7 @@ class Topic {
     @observable note = null
     @observable tracked = false
     @observable checked = false
-    
+
 
     constructor(value) {
         this.value = value
@@ -19,10 +19,13 @@ class Topic {
 class Forest {
     @observable currentTOR = {}
     @observable savedTORS = []
+    @observable searchValue
 
-
-    @action getNewTOR = async () => {
-        let topicData = await requester.getNewTopicData()
+    @action handleInput = value => {
+        this.searchValue = value
+    }
+    @action getNewTOR = async (searchValue) => {
+        let topicData = await requester.getNewTopicData(searchValue)
         console.log(topicData)
         let TOR = new Topic(topicData)
         console.log(TOR)
@@ -33,7 +36,7 @@ class Forest {
         let trackedTORs = await requester.getAllTrackedTORs()
         this.savedTORS = trackedTORs
     }
-    @action getTORData = async ()=>{
+    @action getTORData = async () => {
         let TOR = await requester.getTORData()
         this.currentTOR = TOR
     }
@@ -46,19 +49,20 @@ class Forest {
         await requester.updateTrackedTOR(TOR)
     }
 
-    @action untrackTOR = async ()=>{
+    @action untrackTOR = async () => {
         let TOR = this.currentTOR.id
         await requester.untrackTOR(TOR)
     }
 
-    
+
 }
 
 let verge = new Forest()
 
-let TOR = async()=>{
-await verge.getNewTOR()
-console.log(verge.currentTOR)}
+let TOR = async () => {
+    await verge.getNewTOR()
+    console.log(verge.currentTOR)
+}
 
 TOR()
 
