@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react';
 import SubSubTopic from './SubSubTopic';
+import WikiView from './ContextMenu/WikiView';
 
 
 @inject("LumberYard")
@@ -8,13 +9,15 @@ import SubSubTopic from './SubSubTopic';
 class Subtopic extends Component {
 
     render() {
-        return (<div>
-            <h4>{this.props.child.value.name}</h4>
+        console.log(this.props.child)
+        return (<blockquote>
+            <WikiView topic={this.props.child.value} />
+            <hr></hr>
             {this.props.child.children.length > 0 ?
                 this.props.child.children.map(child =>
                     <SubSubTopic key={child.value.name} child={child} />) :
                 null}
-        </div>)
+        </blockquote>)
     }
 }
 

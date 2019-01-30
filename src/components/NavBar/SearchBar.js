@@ -18,7 +18,7 @@ class SearchBar extends Component {
     return (
       <div>
         <input type="search" placeholder="search" onChange={this.handleInput}></input>
-        <button onClick={this.sendSearch} className="btn waves-effect waves-light">verge to search</button>
+        <button onClick={this.sendSearch} className="brown-text text-darken-4 btn waves-effect waves-light #4db6ac teal lighten-2">verge to search</button>
       </div>
     )
   }

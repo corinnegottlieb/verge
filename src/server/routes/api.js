@@ -1,7 +1,7 @@
 const express = require(`express`)
 const router = express.Router()
 
-// const data=require(`../../DummyData`)
+const data = require(`../../DummyData`)
 const Scraper = require(`../scraper`)
 
 const Topic = require(`../models/TOR`)
@@ -13,17 +13,23 @@ router.get('/tracked', async function (req, res) {
     res.send(trackedTORSs)
 })
 
-
 // GETS NEW TOPIC INFO FROM USER INPUT
-router.get(`/topic/:searchValue`, async (req, res) => {
-    const searchQuery = req.params.searchValue
-    const scraper = new Scraper(searchQuery)
-    await scraper.generateURL()
-    await scraper.fillTopic()
-    console.log(scraper.topic.children)
-    res.send(scraper.topic.children)
+router.get(`/topic/dummyData`, (req, res) => {
+    let TOR = data
+    res.send(TOR)
 })
 
+
+
+// // GETS NEW TOPIC INFO FROM USER INPUT
+// router.get(`/topic/:searchValue`, async (req, res) => {
+//     const searchQuery = req.params.searchValue
+//     const scraper = new Scraper(searchQuery)
+//     await scraper.generateURL()
+//     await scraper.fillTopic()
+//     console.log(scraper.topic.children)
+//     res.send(scraper.topic.children)
+// })
 
 // GETS SPECIFIC SAVED TOR FROM DB
 router.get('/tracked/:id', async function (req, res) {

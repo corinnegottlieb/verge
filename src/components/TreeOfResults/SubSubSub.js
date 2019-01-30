@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react';
- 
+import WikiView from './ContextMenu/WikiView';
 
 @inject("LumberYard")
 @observer
@@ -8,8 +8,10 @@ class SubSubSub extends Component {
 
     render() {
         return (
-            <h4>{this.props.child.value.name}</h4>
-       )
+            <blockquote>
+                <WikiView topic={this.props.child.value} />
+            </blockquote>
+        )
     }
 }
 
