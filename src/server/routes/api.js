@@ -20,7 +20,7 @@ router.get(`/topic/:searchValue`, (req, res) => {
     const scraper = new Scraper(searchQuery)
     scraper.generateURL()
     scraper.fillTopic()
-console.log(scraper.topic)
+console.log(scraper.topic.children[0])
 res.send(scraper.topic)
     })
 

@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 
-@inject("LumberYard", "SearchHandler")
+@inject("LumberYard")
 @observer
 class SearchBar extends Component {
 
   handleInput = (e) => {
-    this.props.SearchHandler.handleInput(e.target.value)
+    this.props.LumberYard.handleInput(e.target.value)
   }
 
   sendSearch = () => {
-    console.log(this.props.SearchHandler.value)
-
+    // console.log(this.props.LumberYard.searchValue)
+    this.props.LumberYard.getNewTOR(this.props.LumberYard.searchValue)
   }
 
   render() {
