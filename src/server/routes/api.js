@@ -8,45 +8,45 @@ const Topic = require(`../models/TOR`)
 
 
 // GETS LIST OF SAVED TREE NAMES FROM DB
-router.get('/tracked', async function(req, res){
-   let trackedTORSs = await Topic.find({}).select('id name')
-        res.send(trackedTORSs)    
-    }) 
+router.get('/tracked', async function (req, res) {
+    let trackedTORSs = await Topic.find({}).select('id name')
+    res.send(trackedTORSs)
+})
 
 
 // GETS NEW TOPIC INFO FROM USER INPUT
-router.get(`/topic/:searchValue`, (req, res) => {
+router.get(`/topic/:searchValue`, async (req, res) => {
     const searchQuery = req.params.searchValue
     const scraper = new Scraper(searchQuery)
-    scraper.generateURL()
-    scraper.fillTopic()
-console.log(scraper.topic.children[0])
-res.send(scraper.topic)
-    })
+    await scraper.generateURL()
+    await scraper.fillTopic()
+    console.log(scraper.topic.children)
+    res.send(scraper.topic.children)
+})
 
 
- // GETS SPECIFIC SAVED TOR FROM DB
-router.get('/tracked/:id', async function(req, res){  
-   let TOR = Topic.findById(req.params.id).exec()
-         res.send(TOR)    
-     }) 
+// GETS SPECIFIC SAVED TOR FROM DB
+router.get('/tracked/:id', async function (req, res) {
+    let TOR = Topic.findById(req.params.id).exec()
+    res.send(TOR)
+})
 
 
 // SAVE NEW TREE IN DB
-router.post('/topic', function(req, res){
+router.post('/topic', function (req, res) {
     let TOR = new Topic(req.body)
     TOR.save()
     res.send(TOR)
 })
 
 // UPDATE EXISTING TRACKEDTOR IN DB
-router.put('/tracked/:id', async function(req, res){
-  let tree = await Topic.findByIdAndUpdate(req.params.id, req.body, {new: true})
-        res.send(tree)
+router.put('/tracked/:id', async function (req, res) {
+    let tree = await Topic.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    res.send(tree)
 })
 
 // REMOVE TRACKEDTOR FROM DB
-router.delete(`/tracked/:id`, function(req, res){
+router.delete(`/tracked/:id`, function (req, res) {
     Topic.findByIdAndRemove(req.params.id).exec()
     res.send(`Topic deleted from DB`)
 })
