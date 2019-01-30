@@ -11,7 +11,7 @@ export default class NavBar extends Component {
         <nav>
           <div className="nav-wrapper #00897b teal darken-1">
             <Link to="./">
-              <a className="brand-logo center">.VERGE</a>
+              <div className="brand-logo center">.VERGE</div>
             </Link>
           </div>
         </nav>
