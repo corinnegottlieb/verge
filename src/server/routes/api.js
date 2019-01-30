@@ -5,32 +5,50 @@ const data=require(`../../DummyData`)
 
 const Topic = require(`../models/Topic`)
 
-router.get(`/tree`, (req, res) => {
-let tree= data.dummydata
-console.log(tree)
 
+// GETS NEW TOPIC INFO FROM USER INPUT
+router.get(`/topic/:topicName`, (req, res) => {
+    // request to the Guyscraper using {req.params.topicName}, (error, response, body) => {
+        // let data = JSON.parse(body)
+        // res.send(data)
+let tree = data.dummydata
+console.log(tree)
+res.send(tree)
     })
 
 
-router.get('/trees', async function(req, res){
-    let trees = await Topic.find({})
+// GETS LIST OF SAVED TREE NAMES FROM DB
+router.get('/tracked', async function(req, res){
+   let trackedTORSs = await Topic.find({}).select('id name')
+        res.send(trackedTORSs)    
+    }) 
 
-        res.send(trees) 
+ // GETS SPECIFIC SAVED TOR FROM DB
+router.get('/tracked/:id', async function(req, res){  
+   let TOR = Topic.findById(req.params.id).exec()
+         res.send(TOR)    
+     }) 
+
+
+// SAVE NEW TREE IN DB
+router.post('/topic', function(req, res){
+    let TOR = new Topic(req.body)
+    TOR.save()
+    res.send(TOR)
 })
 
-router.post('/tree', function(req, res){
-    let tree = new Topic(req.body)
-    tree.save()
-    res.send(tree)
-})
-
-router.put('/tree/:id', async function(req, res){
+// UPDATE EXISTING TRACKEDTOR IN DB
+router.put('/tracked/:id', async function(req, res){
   let tree = await Topic.findByIdAndUpdate(req.params.id, req.body, {new: true})
         res.send(tree)
 })
 
-router.delete
+// REMOVE TRACKEDTOR FROM DB
+router.delete(`/tracked/:id`, function(req, res){
+    Topic.findByIdAndRemove(req.params.id).exec()
+    res.send(`Topic deleted from DB`)
+})
 
-// post route for relevance collection
+// post route for relevance collection ** 
 
 module.exports = router
