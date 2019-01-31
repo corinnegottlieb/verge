@@ -15,6 +15,7 @@ class Forest {
     @observable currentTOR = {}
     @observable savedTORS = []
     // @observable searchValue
+
     @action handleInput = value => {
         this.searchValue = value
     }
@@ -35,7 +36,20 @@ class Forest {
     }
     @action trackTOR = async () => {
         this.currentTOR.tracked = !this.currentTOR.tracked
-        // await requester.trackTOR()
+
+        let newTOR = {
+            value: {
+                name: this.currentTOR.value.value.name,
+                url: this.currentTOR.value.value.link,
+                relevance: this.currentTOR.relevance,
+                tracked: this.currentTOR.tracked,
+                checked: this.currentTOR.checked,
+                note: this.currentTOR.note
+            },
+            children: this.currentTOR.value.children
+        }
+        await requester.trackTOR(newTOR)
+
     }
     @action updateTrackedTOR = async () => {
         let TOR = this.currentTOR.id
@@ -52,5 +66,7 @@ let verge = new Forest()
 //     console.log(verge.currentTOR)
 // }
 // TOR()
+
 verge.getNewTOR()
 export default verge
+

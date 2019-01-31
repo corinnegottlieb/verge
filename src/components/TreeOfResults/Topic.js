@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react';
 import Subtopic from './SubTopic';
-import WikiView from './ContextMenu/WikiView';
+import TrackTOR from './TrackTOR';
 
 @inject("LumberYard")
 @observer

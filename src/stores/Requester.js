@@ -16,7 +16,7 @@ class Requester {
     }
     trackTOR = async (TOR) => {
         await Axios.post(`http://localhost:8000/topic`, TOR)
-        console.log(`Saved TOR`)
+        console.log(`Saved TOR ${TOR}`)
     }
     updateTrackedTOR = async (id, TOR) => {
         await Axios.put(`http://localhost:8000/topic/${id}`, TOR)
