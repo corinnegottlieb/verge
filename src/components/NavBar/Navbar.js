@@ -9,15 +9,18 @@ class NavBar extends Component {
     return (
       <div>
         <nav>
-          <div className="nav-wrapper #00897b teal darken-1">
+          <div className="nav-wrapper #80cbc4 teal lighten-3">
             <Link to="./">
-              <div className="brand-logo center">.VERGE</div>
+              <div className="brown-text text-darken-4 brand-logo center">.VERGE</div>
             </Link>
           </div>
         </nav>
         <SearchBar />
+<<<<<<< HEAD
       
         <LoadSaved />
+=======
+>>>>>>> master
       </div>
     )
   }

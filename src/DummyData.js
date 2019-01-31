@@ -1,5 +1,3 @@
-
-
 const dummyData = {
     value: {
         name: "Samurai",

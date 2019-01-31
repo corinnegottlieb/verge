@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
+import { observer, inject } from 'mobx-react';
 
-export default class Rank extends Component {
+@inject("LumberYard")
+@observer
+class Rank extends Component {
+
+
   render() {
     return (
       <div>
-        <i class="material-icons">thumb_up</i>
-        <i class="material-icons">thumb_down</i>
+        <i className="material-icons">thumb_up</i>
+        <i className="material-icons">thumb_down</i>
       </div>
     )
   }
 }
+
+export default Rank
 
 /*
 To do
