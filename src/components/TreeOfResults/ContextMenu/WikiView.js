@@ -6,9 +6,11 @@ import Popup from "reactjs-popup";
 @observer
 class WikiView extends Component {
   render() {
+    console.log(this.props.topic)
     return (
-      <Popup trigger={<button className="btn waves-effect waves-light"> Popup</button>} position="right center">
-        <iframe title="wikiVIEW" src="https://en.wikipedia.org/wiki/Samurai"
+      <Popup
+        trigger={<button className="black-text btn waves-effect waves-light #efebe9 brown lighten-5">{this.props.topic.name}</button>} position="right top">
+        <iframe title="wikiVIEW" src={this.props.topic.link}
           width="600px"
           height="400px"
           position="relative" />
@@ -18,3 +20,4 @@ class WikiView extends Component {
 }
 
 export default WikiView
+

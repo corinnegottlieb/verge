@@ -5,6 +5,7 @@ import { observer } from 'mobx-react'
 import NavBar from './components/NavBar/Navbar';
 import Topic from './components/TreeOfResults/Topic';
 import WikiView from './components/TreeOfResults/ContextMenu/WikiView';
+import Rank from './components/TreeOfResults/ContextMenu/Rank';
 
 @observer
 class App extends Component {
@@ -13,7 +14,6 @@ class App extends Component {
       <Router>
         <div className="App">
           <NavBar />
-          <WikiView />
           <Topic />
         </div>
       </Router>
