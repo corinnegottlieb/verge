@@ -21,8 +21,3 @@ class WikiView extends Component {
 
 export default WikiView
 
-{/* <h1>
-                {this.props.LumberYard.currentTOR.value ?
-                    <WikiView topic={this.props.LumberYard.currentTOR.value.value} /> :
-                    null}
-            </h1> */}

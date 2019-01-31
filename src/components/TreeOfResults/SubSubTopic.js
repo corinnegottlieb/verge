@@ -3,8 +3,6 @@ import { observer, inject } from 'mobx-react';
 import SubSubSub from './SubSubSub';
 import WikiView from './ContextMenu/WikiView';
 
-
-
 @inject("LumberYard")
 @observer
 class SubSubTopic extends Component {
