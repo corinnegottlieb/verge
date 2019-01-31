@@ -13,6 +13,10 @@ class Topic {
     constructor(value) {
         this.value = value
     }
+
+    @action handleNoteInput = value => {
+        this.note = value
+    }
 }
 
 
@@ -24,11 +28,9 @@ class Forest {
     @action handleInput = value => {
         this.searchValue = value
     }
-    @action getNewTOR = async (searchValue) => {
-        let topicData = await requester.getNewTopicData(searchValue)
-        console.log(topicData)
+    @action getNewTOR = async () => {
+        let topicData = await requester.getNewTopicData()
         let TOR = new Topic(topicData)
-        // console.log(TOR)
         this.currentTOR = TOR
     }
 
