@@ -4,7 +4,8 @@ class Requester {
 
     getAllTrackedTORs = async () => {
         const trackedTORs = await Axios.get("http://localhost:8000/tracked")
-        return trackedTORs
+        // console.log(trackedTORs.data)
+        return trackedTORs.data
     }
 
     getTORData = async (id) =>{

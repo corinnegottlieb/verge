@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import SearchBar from './SearchBar';
 import LoadSaved from './LoadSaved';
+import SavedList from './SavedList';
 
 class NavBar extends Component {
   render() {
@@ -15,6 +16,7 @@ class NavBar extends Component {
           </div>
         </nav>
         <SearchBar />
+      
         <LoadSaved />
       </div>
     )

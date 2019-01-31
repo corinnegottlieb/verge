@@ -18,7 +18,7 @@ class Topic {
 
 class Forest {
     @observable currentTOR = {}
-    @observable savedTORS = []
+    @observable savedTORs = []
     // @observable searchValue
 
     @action handleInput = value => {
@@ -33,7 +33,9 @@ class Forest {
 
     @action getAllTrackedTORs = async () => {
         let trackedTORs = await requester.getAllTrackedTORs()
-        this.savedTORS = trackedTORs
+        // console.log(trackedTORs)
+      this.savedTORs = trackedTORs
+   
     }
     @action getTORData = async () => {
         let TOR = await requester.getTORData()
@@ -77,7 +79,6 @@ let verge = new Forest()
 
 // TOR()
 
-verge.getNewTOR()
 
 
 export default verge

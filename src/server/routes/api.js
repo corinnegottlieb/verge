@@ -8,7 +8,7 @@ const Topic = require(`../models/TOR`)
 
 // GETS LIST OF SAVED TREE NAMES FROM DB
 router.get('/tracked', async function(req, res){
-   let trackedTORSs = await Topic.find({}).select('id name')
+   let trackedTORSs = await Topic.find({}).select('id value')
         res.send(trackedTORSs)    
     }) 
 
