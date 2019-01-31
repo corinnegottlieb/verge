@@ -18,7 +18,11 @@ class Topic {
 class Forest {
     @observable currentTOR = {}
     @observable savedTORS = []
-    // @observable searchValue
+
+    @action createTopic = topic => {
+        let newTopic = new Topic(topic)
+        return newTopic
+    }
 
     @action handleInput = value => {
         this.searchValue = value

@@ -30,3 +30,7 @@
     transform: rotate(360deg);
   }
 }
+
+.nav-wrapper{
+  font-family: 'Permanent Marker', cursive;
+}
