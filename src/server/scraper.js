@@ -1,23 +1,11 @@
 const cheerio = require('cheerio');
 const rp = require('request-promise');
 const tempURL = `https://en.wikipedia.org/wiki/Samurai`;
+const tempSearchQuery = `Samurai`
 
 class Scraper {
-    constructor(searchQuery) {
-        this.searchQuery = searchQuery,
-        this.topic = {
-            name: '',
-            children: []
-        }
-    }
-
-    sanity() {
-        rp(this.url)
-            .then(function(html) {
-                const $ = cheerio.load(html)
-                const toc = $(`ul`, `#toc`).html()
-                console.log(toc)
-        })
+    constructor() {
+        this.searchQuery = ''
     }
 
     generateURL(searchQuery) {
@@ -33,66 +21,42 @@ class Scraper {
         return toc
     }
 
-    // async parseHTML(html = null) {
-    //     const tempHTML = !html ? await this.getHTML() : html  
-    //     const $ = cheerio.load(tempHTML)
-    //     const liData = {
-    //         name: '',
-    //         children: []
-    //     }
-    //     $(`ul`).first().children(`li`).each(function(i, element) {
-    //         liData.children.push($(this).html())
-    //     })
-    //     liData.name = $(`a`).children(`.toctext`).html() || this.searchName
-    //     return liData
-    // }
-    
-<<<<<<< HEAD
-    // async fillTopic(parent = this.topic, liHTML = null) {
-    //     let liData = await this.parseHTML(liHTML)
-    //     if (liData.children.length === 0) {
-    //         parent.children.push(liData)
-    //         // console.log(liData)
-    //         return null
-    //     }
-    //     //else if children array has items:
-    //     parent.children.push({name: liData.name, children: []})
-    //     const loopLength = liData.children.length
-    //     // console.log(liData)
-    //     for (let i = 0; i < loopLength; i++) {
-    //         await this.fillTopic(liData, liData.children[i])
-    //     }
-    // }
-=======
-    async fillTopic(parent = this.topic, liHTML = null) {
-        let liData = await this.parseHTML(liHTML)
-        if (liData.children.length === 0) {
-            parent.children.push(liData)
-            console.log(liData)
-            return null
+    createTopic(html) {
+        const $ = cheerio.load(html)
+        const topicObject = {}
+        const isFirst = $.root().find(`div`).first().attr(`class`) === `toctitle`
+        topicObject.name = isFirst ? this.searchQuery : $(`a`).attr(`href`)
+        const ulChild = $(`ul`)
+        if (ulChild.html() !== null) { //current html has children
+            topicObject.children = []
+            ulChild
+                .children(`li`)
+                .filter(function(i,el) {
+                    return $(el).parent().html() === ulChild.html() 
+                })
+                .each((i, element) => {
+                topicObject.children.push(this.createTopic($(element).html()))
+            })
         }
-        //else if children array has items:
-        parent.children.push({name: liData.name, children: []})
-        const loopLength = liData.children.length
-        console.log(liData)
-        for (let i = 0; i < loopLength; i++) {
-            await this.fillTopic(liData, liData.children[i])
-        }
+        return topicObject
     }
->>>>>>> master
 
     async getData(searchQuery) {
+        this.searchQuery = searchQuery
         const url = this.generateURL(searchQuery)
         const html = await this.getHTML(url)
         return this.createTopic(html)
     }
 
+    async test() {
+        const data = await scraper.getData(tempSearchQuery)
+        console.log(data)
+        // console.log(data.children[0].children[5].children[1])
+    }
+
 }
 
-const scraper = new Scraper(`Baba ghanoush`)
-scraper.generateURL()
-scraper.fillTopic()
-
-
+const scraper = new Scraper()
+// scraper.test()
 
 module.exports = Scraper;
