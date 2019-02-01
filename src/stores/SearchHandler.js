@@ -10,7 +10,7 @@ class SearchHandler {
   }
   @action getNewTOR = async () => {
     let topicData = await requester.getNewTopicData(this.searchInput)
-    // console.log(topicData)
+    console.log(topicData)
     // let TOR = new Topic(topicData)
     // console.log(TOR)
     // this.currentTOR = TOR
