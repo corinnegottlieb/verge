@@ -5,12 +5,14 @@ const tempSearchQuery = `banana`
 
 class Scraper {
     constructor() {
-        this.searchQuery = ''
+        this.searchQuery = '',
+        this.url = ''
     }
 
     generateURL(searchQuery) {
         let word = searchQuery.split(' ').join(`_`)
         let url = `https://en.wikipedia.org/wiki/${word}`
+        this.url = url
         return url
     }
     
@@ -21,11 +23,17 @@ class Scraper {
         return toc
     }
 
-    createTopic(html) {
+    createTopic(html, parent) {
         const $ = cheerio.load(html)
-        const topicObject = {}
         const isFirst = $.root().find(`div`).first().attr(`class`) === `toctitle`
+        const topicObject = {}
         topicObject.name = isFirst ? this.searchQuery : $(`a`).attr(`href`)
+        topicObject.url = isFirst ? this.url : `${this.url}${topicObject.name}`
+        topicObject.level = isFirst ? 0 : parent.level + 1
+        topicObject.relevance = true
+        topicObject.tracked = false
+        topicObject.checked = false
+        topicObject.note = ''
         const ulChild = $(`ul`)
         if (ulChild.html() !== null) { //current html has children
             topicObject.children = []
@@ -35,7 +43,7 @@ class Scraper {
                     return $(el).parent().html() === ulChild.html() 
                 })
                 .each((i, element) => {
-                topicObject.children.push(this.createTopic($(element).html()))
+                topicObject.children.push(this.createTopic($(element).html(), topicObject))
             })
         }
         return topicObject
