@@ -8,9 +8,9 @@ class Requester {
         const TORData = await Axios.get(`http://localhost:8000/tracked/${id}`)
         return TORData
     }
-    getNewTopicData = async () => {
+    getNewTopicData = async (searchValue) => {
         // console.log(searchValue)
-        const topicData = await Axios.get(`http://localhost:8000/topic/dummyData`)
+        const topicData = await Axios.get(`http://localhost:8000/topic/searchValue`)
         // console.log(topicData.data)
         return topicData.data
     }

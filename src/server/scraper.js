@@ -1,7 +1,7 @@
 const cheerio = require('cheerio');
 const rp = require('request-promise');
 const tempURL = `https://en.wikipedia.org/wiki/Samurai`;
-const tempSearchQuery = `Samurai`
+const tempSearchQuery = `banana`
 
 class Scraper {
     constructor() {
@@ -56,7 +56,7 @@ class Scraper {
 
 }
 
-const scraper = new Scraper()
+// const scraper = new Scraper()
 // scraper.test()
 
 module.exports = Scraper;

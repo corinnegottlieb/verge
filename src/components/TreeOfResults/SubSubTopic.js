@@ -4,7 +4,7 @@ import SubSubSub from './SubSubSub';
 import WikiView from './ContextMenu/WikiView';
 import Rank from './ContextMenu/Rank';
 
-@inject("LumberYard")
+@inject("lumberYard")
 @observer
 class SubSubTopic extends Component {
 

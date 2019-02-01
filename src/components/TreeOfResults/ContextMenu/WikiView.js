@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 import Popup from "reactjs-popup";
 
-@inject("LumberYard")
+@inject("lumberYard")
 @observer
 class WikiView extends Component {
   render() {

@@ -4,19 +4,19 @@ import Subtopic from './SubTopic';
 import TrackTOR from './TrackTOR';
 import WikiView from './ContextMenu/WikiView';
 
-@inject("LumberYard")
+@inject("lumberYard")
 @observer
 class Topic extends Component {
     render() {
-        console.log(this.props.LumberYard.currentTOR.value || {})
-        console.log(this.props.LumberYard.currentTOR)
+        console.log(this.props.lumberYard.currentTOR.value || {})
+        console.log(this.props.lumberYard.currentTOR)
         return (<div>
             <h1>
-                {this.props.LumberYard.currentTOR.value ?
-                    <WikiView topic={this.props.LumberYard.currentTOR.value.value} /> :
+                {this.props.lumberYard.currentTOR.value ?
+                    <WikiView topic={this.props.lumberYard.currentTOR.value.value} /> :
                     null}
             </h1>
-            {this.props.LumberYard.currentTOR.value ? this.props.LumberYard.currentTOR.value.children.map(child =>
+            {this.props.lumberYard.currentTOR.value ? this.props.lumberYard.currentTOR.value.children.map(child =>
                 <Subtopic key={child.value.name} child={child} />) : null}
         </div>)
     }

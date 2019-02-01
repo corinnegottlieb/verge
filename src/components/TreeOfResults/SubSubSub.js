@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react';
 import WikiView from './ContextMenu/WikiView';
 
-@inject("LumberYard")
+@inject("lumberYard")
 @observer
 class SubSubSub extends Component {
 
