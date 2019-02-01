@@ -11,7 +11,7 @@ class SearchBar extends Component {
 
   sendSearch = () => {
     // console.log(this.props.lumberYard.searchValue)
-    this.props.lumberYard.getNewTOR(this.props.lumberYard.searchValue)
+    this.props.searchHandler.getNewTOR()
   }
 
   render() {

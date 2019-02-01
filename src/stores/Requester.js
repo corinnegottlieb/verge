@@ -9,10 +9,9 @@ class Requester {
         return TORData
     }
     getNewTopicData = async (searchValue) => {
-        // console.log(searchValue)
-        const topicData = await Axios.get(`http://localhost:8000/topic/searchValue`)
-        // console.log(topicData.data)
-        return topicData.data
+        const topicData = await Axios.get(`http://localhost:8000/topic/${searchValue}`)
+        console.log(topicData.data)
+        // return topicData.data
     }
     trackTOR = async (TOR) => {
         await Axios.post(`http://localhost:8000/topic`, TOR)

@@ -7,15 +7,14 @@ class SearchHandler {
   
   @action handleInput = (value) => {
     this.searchInput = value
-    console.log(this.searchInput)
   }
-  // @action getNewTOR = async (searchValue) => {
-  //   let topicData = await requester.getNewTopicData(searchValue)
-  //   console.log(topicData)
-  //   // let TOR = new Topic(topicData)
-  //   // console.log(TOR)
-  //   // this.currentTOR = TOR
-  // }
+  @action getNewTOR = async () => {
+    let topicData = await requester.getNewTopicData(this.searchInput)
+    // console.log(topicData)
+    // let TOR = new Topic(topicData)
+    // console.log(TOR)
+    // this.currentTOR = TOR
+  }
 }
 
 const searchHandler = new SearchHandler()
