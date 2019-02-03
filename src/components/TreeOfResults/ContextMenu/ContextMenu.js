@@ -11,7 +11,6 @@ class ContextMenu extends Component {
                 <OpenNote />
                 <OpenWikiView />
                 <Remove />
-                <Check />
             </div>
         )
     }
