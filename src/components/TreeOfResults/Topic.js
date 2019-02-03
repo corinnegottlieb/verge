@@ -1,37 +1,34 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react';
-// import Subtopic from './SubTopic';
-// import WikiView from './ContextMenu/WikiView';
 
 @inject("lumberYard")
 @observer
 
 class Topic extends Component {
 
-  renderDecider = (currentTOR) => {
-    // if (currentTOR.level === 0 && currentTOR.children) {
-    //   return <div>
-    //     <h3>{this.props.lumberYard.currentTOR.name}</h3>
-    //     <Topic key={currentTOR.name}
-    //       currentTOR={currentTOR.children} />
-    //   </div>
-    // }
+  topicRenderer = (currentTOR) => {
+    console.log('currentTOR -', currentTOR.name)
     return (
       <div>
         <div className={`level${currentTOR.level} singleTopic`} id={currentTOR.name}>
           {currentTOR.name}
         </div>
         {currentTOR.children ?
-          currentTOR.children.map(c => { return (<div key={c.name}>{this.renderDecider(c)}</div>) }) :
+          currentTOR.children.map(c => {
+            return (
+              <Topic key={c.name} currentTOR={c} />
+            )
+          }) :
           null}
       </div>
     )
   }
 
   render() {
-    console.log(this.props.lumberYard.currentTOR.name)
     return (
-      this.renderDecider(this.props.lumberYard.currentTOR)
+      this.props.currentTOR ?
+        this.topicRenderer(this.props.currentTOR) :
+        this.topicRenderer(this.props.lumberYard.currentTOR)
     )
   }
 }
