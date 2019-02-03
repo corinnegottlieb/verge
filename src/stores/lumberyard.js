@@ -18,22 +18,35 @@ class Topic {
 }
 
 class LumberYard {
-    @observable currentTOR = {}
+    @observable currentTOR = {name:'', children:[]}
     @observable savedTORS = []
+    @observable searchValue = ''
 
     @action createTopic = topic => {
         let newTopic = new Topic(topic)
         return newTopic
     }
-    @action handleInput = value => {
+    @action handleInput = (value) => {
         this.searchValue = value
+        console.log(this.searchValue)
     }
-    @action getNewTOR = async (searchValue) => {
-        let topicData = await requester.getNewTopicData(searchValue)
+    @action getNewTOR = async () => {
+        let topicData = await requester.getNewTopicData(this.searchValue)
         console.log(topicData)
-        // let TOR = new Topic(topicData)
-        // console.log(TOR)
-        // this.currentTOR = TOR
+        this.currentTOR = topicData
+    }
+    @action findTopicByName = (name, topic) => {
+        const currentTopic = topic ? topic : this.currentTOR
+        if (currentTopic.name === name) {
+            currentTopic.menu = !currentTopic.menu
+        } else if (currentTopic.children) {
+            currentTopic.children.forEach(c => {
+                this.findTopicByName(name, c)
+            })
+        } 
+        // else {
+        //     return
+        // }
     }
     @action getAllTrackedTORs = async () => {
         let trackedTORs = await requester.getAllTrackedTORs()

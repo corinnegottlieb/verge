@@ -3,7 +3,6 @@ const router = express.Router()
 
 const data = require(`../../DummyData`)
 const Scraper = require(`../scraper`)
-const scraper = new Scraper()
 const Topic = require(`../models/TOR`)
 
 
@@ -25,6 +24,7 @@ router.get('/tracked', async function(req, res){
 // // GETS NEW TOPIC INFO FROM USER INPUT
 router.get(`/topic/:searchValue`, async (req, res) => {
     const searchQuery = req.params.searchValue
+    const scraper = new Scraper()
     const topicObject = await scraper.getData(searchQuery)
     res.send(topicObject)
 })
