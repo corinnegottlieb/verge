@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 import SingleTopic from './SingleTopic';
 import ContextMenu from './ContextMenu/ContextMenu';
+import Checked from './Checked';
 
 @inject("lumberYard")
 @observer
@@ -19,7 +20,10 @@ class TORView extends Component {
                     {cTOR.menu ? <ContextMenu cTOR={cTOR} /> : null}
                 </div>
                 {cTOR.children ? 
-                    cTOR.children.map(c => {return (<div>{this.buildHTMLTree(c)}</div>)}) :
+                    cTOR.children.map(c => {return (<div>
+                        <div>{this.buildHTMLTree(c)}</div>
+                        <Checked />
+                        </div>)}) :
                     null}
             </div>
         )

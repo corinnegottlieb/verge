@@ -84,7 +84,6 @@ class LumberYard {
 
     @action check = ()=>{
         this.currentTOR.checked = !this.currentTOR.checked
-        console.log(this.currentTOR.checked)
     }
 }
 // let verge = new Forest()
