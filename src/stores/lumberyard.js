@@ -13,7 +13,7 @@ class Topic {
 }
 class Forest {
     @observable currentTOR = {}
-    @observable savedTORs = []
+    @observable savedTORS = []
     // @observable searchValue
 
     @action handleInput = value => {
@@ -28,9 +28,7 @@ class Forest {
     }
     @action getAllTrackedTORs = async () => {
         let trackedTORs = await requester.getAllTrackedTORs()
-        // console.log(trackedTORs)
-      this.savedTORs = trackedTORs
-   
+        this.savedTORS = trackedTORs
     }
     @action getTORData = async () => {
         let TOR = await requester.getTORData()
