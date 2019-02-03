@@ -16,11 +16,8 @@ class NavBar extends Component {
           </div>
         </nav>
         <SearchBar />
-<<<<<<< HEAD
       
         <LoadSaved />
-=======
->>>>>>> master
       </div>
     )
   }
