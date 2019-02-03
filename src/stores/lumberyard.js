@@ -25,9 +25,11 @@ class LumberYard {
         let newTopic = new Topic(topic)
         return newTopic
     }
-    @action handleInput = value => {
-        this.searchValue = value
+    @action handleInput = (valueName, value) => {
+        this.currentTOR[valueName] = value
     }
+
+
     @action getNewTOR = async (searchValue) => {
         let topicData = await requester.getNewTopicData(searchValue)
         console.log(topicData)

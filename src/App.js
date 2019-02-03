@@ -7,6 +7,7 @@ import Topic from './components/TreeOfResults/Topic';
 import WikiView from './components/TreeOfResults/ContextMenu/WikiView';
 import Rank from './components/TreeOfResults/ContextMenu/Rank';
 import Checked from './components/TreeOfResults/Checked';
+import Note from './components/TreeOfResults/Note';
 
 @observer
 class App extends Component {
@@ -17,6 +18,7 @@ class App extends Component {
           <NavBar />
           <Topic />
           <Checked/>
+          <Note />
         </div>
       </Router>
     );
