@@ -1,11 +1,23 @@
-import { observable, action } from 'mobx'
+import { observable, action } from 'mobx';
+import Requester from './Requester';
+const requester = new Requester();
 
 class SearchHandler {
-  @observable value
-  @action handleInput = value => {
-    this.value = value
+  @observable searchInput = ''
+  
+  @action handleInput = (value) => {
+    this.searchInput = value
+  }
+  @action getNewTOR = async () => {
+    let topicData = await requester.getNewTopicData(this.searchInput)
+    console.log(topicData)
+    // let TOR = new Topic(topicData)
+    // console.log(TOR)
+    // this.currentTOR = TOR
   }
 }
 
-export default new SearchHandler()
+const searchHandler = new SearchHandler()
+
+export default searchHandler;
 

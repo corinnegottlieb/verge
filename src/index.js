@@ -4,10 +4,10 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'mobx-react'
-import LumberYard from './stores/LumberYard'
-import SearchHandler from './stores/SearchHandler'
+import lumberYard from './stores/LumberYard'
+import searchHandler from './stores/SearchHandler'
 
-const stores = { LumberYard, SearchHandler }
+const stores = { lumberYard, searchHandler }
 
 ReactDOM.render(<Provider {...stores}>
   <App />

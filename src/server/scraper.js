@@ -1,82 +1,62 @@
 const cheerio = require('cheerio');
 const rp = require('request-promise');
 const tempURL = `https://en.wikipedia.org/wiki/Samurai`;
+const tempSearchQuery = `banana`
 
 class Scraper {
-    constructor(searchQuery) {
-        this.searchQuery = searchQuery,
-        this.url = null,
-        this.html = ''
-        this.topic = {
-            name: '',
-            children: []
-        }
+    constructor() {
+        this.searchQuery = ''
     }
 
-    sanity() {
-        rp(this.url)
-            .then(function(html) {
-                const $ = cheerio.load(html)
-                const toc = $(`ul`, `#toc`).html()
-                console.log(toc)
-        })
-    }
-
-    generateURL() {
-        let word = this.searchQuery.split(' ').join(`_`)
+    generateURL(searchQuery) {
+        let word = searchQuery.split(' ').join(`_`)
         let url = `https://en.wikipedia.org/wiki/${word}`
-        this.url = url
+        return url
     }
     
-    async getHTML() {
-        const url = this.url
+    async getHTML(url) {
         const response = await rp(url)
         const $ = cheerio.load(response)
         const toc = $(`#toc`).html()
         return toc
     }
 
-    async parseHTML(html = null) {
-        const tempHTML = !html ? await this.getHTML() : html  
-        const $ = cheerio.load(tempHTML)
-        const liData = {
-            name: '',
-            children: []
+    createTopic(html) {
+        const $ = cheerio.load(html)
+        const topicObject = {}
+        const isFirst = $.root().find(`div`).first().attr(`class`) === `toctitle`
+        topicObject.name = isFirst ? this.searchQuery : $(`a`).attr(`href`)
+        const ulChild = $(`ul`)
+        if (ulChild.html() !== null) { //current html has children
+            topicObject.children = []
+            ulChild
+                .children(`li`)
+                .filter(function(i,el) {
+                    return $(el).parent().html() === ulChild.html() 
+                })
+                .each((i, element) => {
+                topicObject.children.push(this.createTopic($(element).html()))
+            })
         }
-        $(`ul`).first().children(`li`).each(function(i, element) {
-            liData.children.push($(this).html())
-        })
-        liData.name = $(`a`).children(`.toctext`).html() || this.searchName
-        return liData
+        return topicObject
     }
-    
-    async fillTopic(parent = this.topic, liHTML = null) {
-        let liData = await this.parseHTML(liHTML)
-        if (liData.children.length === 0) {
-            parent.children.push(liData)
-            console.log(liData)
-            return null
-        }
-        //else if children array has items:
-        parent.children.push({name: liData.name, children: []})
-        const loopLength = liData.children.length
-        console.log(liData)
-        for (let i = 0; i < loopLength; i++) {
-            await this.fillTopic(liData, liData.children[i])
-        }
+
+    async getData(searchQuery) {
+        this.searchQuery = searchQuery
+        const url = this.generateURL(searchQuery)
+        const html = await this.getHTML(url)
+        return this.createTopic(html)
     }
 
     async test() {
-        await this.fillTopic()
-        console.log(this.topic)
+        const data = await scraper.getData(tempSearchQuery)
+        console.log(data)
+        // console.log(data.children[0].children[5].children[1])
     }
 
 }
 
-const scraper = new Scraper(`Baba ghanoush`)
-scraper.generateURL()
-scraper.fillTopic()
-
-
+// const scraper = new Scraper()
+// scraper.test()
 
 module.exports = Scraper;

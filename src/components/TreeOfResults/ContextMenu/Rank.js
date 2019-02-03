@@ -1,24 +1,19 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 
-@inject("LumberYard")
+@inject("lumberYard")
 @observer
 class Rank extends Component {
 
 
   render() {
     return (
-      <div>
-        <i className="material-icons">thumb_up</i>
-        <i className="material-icons">thumb_down</i>
-      </div>
+      <span>
+        <i class="far fa-trash-alt"></i>
+        <i class="far fa-thumbs-up"></i>
+      </span>
     )
   }
 }
 
 export default Rank
-
-/*
-To do
-- button (i tag) functionality
-*/
