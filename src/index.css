@@ -8,9 +8,38 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #F3EFE0;
 }
-/* background-color: #F7F7F2; */
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.singleTopic {
+  position: relative;
+  display: inline-block;
+  cursor: default;
+  margin: 5px 0;
+  background-color: rgb(233, 227, 208);
+}
+
+.contextMenu {
+  /* position: absolute;
+  top: 0;
+  margin-left: 35vw; */
+  cursor: pointer;
+  background-color: rgb(233, 227, 208);
+  /* width: 200px; */
+}
+
+.level1 {
+  text-indent: 15px;
+}
+.level2 {
+  text-indent: 30px;
+}
+.level3 {
+  text-indent: 45px;
+}
+.level4 {
+  text-indent: 60px;
 }
