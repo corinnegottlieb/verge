@@ -34,6 +34,19 @@ class LumberYard {
         console.log(topicData)
         this.currentTOR = topicData
     }
+    @action findTopicByName = (name, topic) => {
+        const currentTopic = topic ? topic : this.currentTOR
+        if (currentTopic.name === name) {
+            currentTopic.menu = !currentTopic.menu
+        } else if (currentTopic.children) {
+            currentTopic.children.forEach(c => {
+                this.findTopicByName(name, c)
+            })
+        } 
+        // else {
+        //     return
+        // }
+    }
     @action getAllTrackedTORs = async () => {
         let trackedTORs = await requester.getAllTrackedTORs()
         this.savedTORS = trackedTORs

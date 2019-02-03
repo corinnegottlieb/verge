@@ -34,6 +34,7 @@ class Scraper {
         topicObject.tracked = false
         topicObject.checked = false
         topicObject.note = ''
+        topicObject.menu = false
         const ulChild = $(`ul`)
         if (ulChild.html() !== null) { //current html has children
             topicObject.children = []
