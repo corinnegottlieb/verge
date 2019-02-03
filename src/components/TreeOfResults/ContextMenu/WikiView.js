@@ -13,4 +13,3 @@ class WikiView extends Component {
 }
 
 export default WikiView;
-
