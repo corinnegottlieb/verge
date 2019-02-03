@@ -4,12 +4,12 @@ import SubSubTopic from './SubSubTopic';
 import WikiView from './ContextMenu/WikiView';
 import Rank from './ContextMenu/Rank';
 
-@inject("LumberYard")
+@inject("lumberYard")
 @observer
 class Subtopic extends Component {
 
     createTopic = () => {
-        let newTopic = this.props.LumberYard.creatTopic(this.props.child)
+        let newTopic = this.props.lumberYard.creatTopic(this.props.child)
         return newTopic
     }
 

@@ -1,6 +1,7 @@
-import { observable, action } from 'mobx'
+import { observable, action } from 'mobx';
 import Requester from './Requester';
-const requester = new Requester()
+const requester = new Requester();
+
 class Topic {
     @observable userID = 1
     @observable relevance = null
@@ -10,8 +11,13 @@ class Topic {
     constructor(value) {
         this.value = value
     }
+
+    @action handleNoteInput = value => {
+        this.note = value
+    }
 }
-class Forest {
+
+class LumberYard {
     @observable currentTOR = {}
     @observable savedTORS = []
 
@@ -19,16 +25,15 @@ class Forest {
         let newTopic = new Topic(topic)
         return newTopic
     }
-
     @action handleInput = value => {
         this.searchValue = value
     }
-    @action getNewTOR = async () => {
-        let topicData = await requester.getNewTopicData()
+    @action getNewTOR = async (searchValue) => {
+        let topicData = await requester.getNewTopicData(searchValue)
         console.log(topicData)
-        let TOR = new Topic(topicData)
-        console.log(TOR)
-        this.currentTOR = TOR
+        // let TOR = new Topic(topicData)
+        // console.log(TOR)
+        // this.currentTOR = TOR
     }
     @action getAllTrackedTORs = async () => {
         let trackedTORs = await requester.getAllTrackedTORs()
@@ -64,13 +69,16 @@ class Forest {
         await requester.untrackTOR(TOR)
     }
 }
-let verge = new Forest()
+// let verge = new Forest()
 // let TOR = async () => {
 //     await verge.getNewTOR()
 //     console.log(verge.currentTOR)
 // }
 // TOR()
 
-verge.getNewTOR()
-export default verge
+// verge.getNewTOR()
+// export default verge
 
+const lumberYard = new LumberYard()
+
+export default lumberYard;
