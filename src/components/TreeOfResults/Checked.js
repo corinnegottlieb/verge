@@ -7,10 +7,10 @@ class Checked extends Component {
 
     render() {
         return (
-            <div>
-                <span>Done</span>
-                <input type="checkbox"></input>
-            </div>
+            <label>
+            <input type="checkbox" onClick={this.props.lumberYard.check} />
+            <span>Done</span>
+            </label>
         )
     }
 }

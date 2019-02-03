@@ -68,6 +68,11 @@ class LumberYard {
         let TOR = this.currentTOR.id
         await requester.untrackTOR(TOR)
     }
+
+    @action check = ()=>{
+        this.currentTOR.checked = !this.currentTOR.checked
+        console.log(this.currentTOR.checked)
+    }
 }
 // let verge = new Forest()
 // let TOR = async () => {
