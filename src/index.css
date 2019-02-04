@@ -14,6 +14,18 @@ code {
     monospace;
 }
 
+.topicContainer {
+  position: relative;
+}
+
+.pin {
+  font-size: 150%;
+  position: absolute;
+  right: 30px;
+  top: 10px;
+  cursor: pointer;
+}
+
 .singleTopic {
   position: relative;
   display: inline-block;

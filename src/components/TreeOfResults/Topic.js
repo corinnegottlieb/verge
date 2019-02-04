@@ -3,6 +3,7 @@ import { observer, inject } from 'mobx-react';
 import Check from './Check';
 import Note from './Note';
 import Remove from './ContextMenu/Remove';
+import TrackTOR from './TrackTOR'
 
 @inject("lumberYard")
 @observer
@@ -10,8 +11,12 @@ import Remove from './ContextMenu/Remove';
 class Topic extends Component {
 
   topicRenderer = (currentTOR) => {
+    // console.log('currentTOR -', currentTOR.name)
     return (
-      <div>
+      <div className="topicContainer">
+        {this.props.currentTOR ?
+          null :
+          <TrackTOR />}
         <div className={`level${currentTOR.level} singleTopic`} id={currentTOR.name}>
           {currentTOR.name}
         </div>
@@ -35,6 +40,9 @@ class Topic extends Component {
       this.props.currentTOR ?
         this.topicRenderer(this.props.currentTOR) :
         this.topicRenderer(this.props.lumberYard.currentTOR)
+
+      // //Guy's Try:
+      // this.props.lumberYard.currentTOR.name === this.props.lumberYard.searchValue
     )
   }
 }
