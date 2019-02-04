@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react';
 import Popup from "reactjs-popup";
-import OpenNote from './ContextMenu/OpenNote';
+import Check from './Check';
+import Note from './Note';
 import Remove from './ContextMenu/Remove';
-import Check from './ContextMenu/Check';
-// import ContextMenu from './ContextMenu/ContextMenu';
 
 @inject("lumberYard")
 @observer
@@ -19,12 +18,14 @@ class Topic extends Component {
           id={currentTOR.name}>
           {currentTOR.name}
         </div>
+        <Check name={currentTOR.name} />
+        <Note name={currentTOR.name} />
+        <Remove name={currentTOR.name} />
         {currentTOR.children ?
           currentTOR.children.map(c => {
-            return (
-              <div key={c.name}>
-                <Topic currentTOR={c} />
-              </div>
+            return (<div>
+              <Topic key={c.name} currentTOR={c} />
+            </div>
             )
           }) :
           null}
@@ -45,7 +46,7 @@ class Topic extends Component {
         arrow={false}
       >
         <div className="menu">
-          <OpenNote className="menu-item" />
+          {/* <OpenNote className="menu-item" /> */}
           <Remove className="menu-item" />
           <Check className="menu-item" />
         </div>

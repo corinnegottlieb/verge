@@ -32,14 +32,14 @@ code {
 }
 
 .level1 {
-  text-indent: 15px;
-}
-.level2 {
   text-indent: 30px;
 }
+.level2 {
+  text-indent: 60px;
+}
 .level3 {
-  text-indent: 45px;
+  text-indent: 90px;
 }
 .level4 {
-  text-indent: 60px;
+  text-indent: 120px;
 }

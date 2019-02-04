@@ -3,7 +3,7 @@ import { observer, inject } from 'mobx-react';
 import Popup from "reactjs-popup";
 import OpenNote from './OpenNote';
 import Remove from './Remove';
-import Check from './Check';
+import Check from '../Check';
 
 @inject("lumberYard")
 @observer
