@@ -5,6 +5,7 @@ import { observer, inject } from 'mobx-react';
 @observer
 class Check extends Component {
   markAsRead = (event) => {
+    console.log(event.target.name)
 this.props.lumberYard.findTopicByNameAndMarkAsRead(event.target.name)  
 }
   render() {
