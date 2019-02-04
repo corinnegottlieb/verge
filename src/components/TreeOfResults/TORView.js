@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
-import SingleTopic from './SingleTopic';
 import ContextMenu from './ContextMenu/ContextMenu';
 import Check from './ContextMenu/Check';
 
 @inject("lumberYard")
 @observer
 class TORView extends Component {
-    toggleMenu = (event) => {
-        const foundTopic = this.props.lumberYard.findTopicByName(event.target.id)  
-    }
+  toggleMenu = (event) => {
+    const foundTopic = this.props.lumberYard.findTopicByName(event.target.id)
+  }
 
     buildHTMLTree = (cTOR) => {
         return (
@@ -29,14 +28,14 @@ class TORView extends Component {
         )
     }
 
-    render() {
-        return (
-            this.buildHTMLTree(this.props.lumberYard.currentTOR)
-            // this.props.lumberYard.currentTOR.children.map(c => 
-            //     <SingleTopic topic={c} />
-            // )
-        )
-    }
+  render() {
+    return (
+      this.buildHTMLTree(this.props.lumberYard.currentTOR)
+      // this.props.lumberYard.currentTOR.children.map(c => 
+      //     <SingleTopic topic={c} />
+      // )
+    )
+  }
 }
 
 export default TORView;

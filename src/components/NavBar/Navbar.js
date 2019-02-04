@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import SearchBar from './SearchBar';
-import LoadSaved from './LoadSaved';
+// import LoadSaved from './LoadSaved';
 
 class NavBar extends Component {
   render() {
