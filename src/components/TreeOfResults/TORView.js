@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 import SingleTopic from './SingleTopic';
 import ContextMenu from './ContextMenu/ContextMenu';
+import TrackTOR from './TrackTOR'
 
 @inject("lumberYard")
 @observer
@@ -27,10 +28,12 @@ class TORView extends Component {
 
     render() {
         return (
-            this.buildHTMLTree(this.props.lumberYard.currentTOR)
-            // this.props.lumberYard.currentTOR.children.map(c => 
-            //     <SingleTopic topic={c} />
-            // )
+            <div>
+                <TrackTOR />
+                {this.buildHTMLTree(this.props.lumberYard.currentTOR)}
+                {this.props.lumberYard.currentTOR.children.map(c => 
+                    <SingleTopic topic={c} />)}
+            </div>
         )
     }
 }

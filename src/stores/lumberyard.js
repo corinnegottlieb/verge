@@ -44,9 +44,6 @@ class LumberYard {
                 this.findTopicByName(name, c)
             })
         } 
-        // else {
-        //     return
-        // }
     }
     @action getAllTrackedTORs = async () => {
         let trackedTORs = await requester.getAllTrackedTORs()
