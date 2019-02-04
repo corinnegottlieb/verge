@@ -3,6 +3,7 @@ import { observer, inject } from 'mobx-react';
 import Check from './Check';
 import Note from './Note';
 import Remove from './ContextMenu/Remove';
+import TrackTOR from './TrackTOR';
 
 @inject("lumberYard")
 @observer

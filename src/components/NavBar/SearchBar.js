@@ -25,7 +25,7 @@ class SearchBar extends Component {
     return (
       <div>
         <input type="search" value={this.props.lumberYard.searchValue} placeholder="search" onChange={this.handleSearchInput} onKeyDown={this.enterToSend}></input>
-        <Link to='/TOR'> <button onClick={this.sendSearch} className="brown-text text-darken-4 btn waves-effect waves-light #4db6ac teal lighten-2">verge to search</button></Link>
+        <Link to='/TOR'> <button  onClick={this.sendSearch} className="brown-text text-darken-4 btn waves-effect waves-light #4db6ac teal lighten-2">verge to search</button></Link>
       </div>
     )
   }
