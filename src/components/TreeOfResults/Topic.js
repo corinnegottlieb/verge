@@ -1,26 +1,39 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react';
-import Subtopic from './SubTopic';
-import TrackTOR from './TrackTOR';
-import WikiView from './ContextMenu/WikiView';
+import Check from './ContextMenu/Check';
 
 @inject("lumberYard")
 @observer
+
 class Topic extends Component {
-    render() {
-        console.log(this.props.lumberYard.currentTOR.value || {})
-        console.log(this.props.lumberYard.currentTOR)
-        return (<div>
-            <h1>
-                {this.props.lumberYard.currentTOR.value ?
-                    <WikiView topic={this.props.lumberYard.currentTOR.value.value} /> :
-                    null}
-            </h1>
-            {this.props.lumberYard.currentTOR.value ? this.props.lumberYard.currentTOR.value.children.map(child =>
-                <Subtopic key={child.value.name} child={child} />) : null}
-        </div>)
-    }
+
+  topicRenderer = (currentTOR) => {
+    console.log('currentTOR -', currentTOR.name)
+    return (
+      <div>
+        <div className={`level${currentTOR.level} singleTopic`} id={currentTOR.name}>
+          {currentTOR.name}
+        </div>
+        <Check />
+        {currentTOR.children ?
+          currentTOR.children.map(c => {
+            return (<div>
+              <Topic key={c.name} currentTOR={c} />
+              </div>
+            )
+          }) :
+          null}
+      </div>
+    )
+  }
+
+  render() {
+    return (
+      this.props.currentTOR ?
+        this.topicRenderer(this.props.currentTOR) :
+        this.topicRenderer(this.props.lumberYard.currentTOR)
+    )
+  }
 }
 
 export default Topic
-
