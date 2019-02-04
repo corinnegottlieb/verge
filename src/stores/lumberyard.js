@@ -34,6 +34,7 @@ class LumberYard {
         let topicData = await requester.getNewTopicData(this.searchValue)
         console.log(topicData)
         this.currentTOR = topicData
+        console.log(this.currentTOR)
     }
     @action findTopicByName = (name, topic) => {
         const currentTopic = topic ? topic : this.currentTOR
@@ -48,6 +49,17 @@ class LumberYard {
         //     return
         // }
     }
+
+    @action findTopicByNameAndMarkAsRead = (name, topic) => {
+        const currentTopic = topic ? topic : this.currentTOR
+        if (currentTopic.name === name) {
+            currentTopic.checked = !currentTopic.checked
+        } else if (currentTopic.children) {
+            currentTopic.children.forEach(c => {
+                this.findTopicByNameAndMarkAsRead(name, c)
+            })
+        } }
+
     @action getAllTrackedTORs = async () => {
         let trackedTORs = await requester.getAllTrackedTORs()
         this.savedTORS = trackedTORs
@@ -81,6 +93,11 @@ class LumberYard {
         let TOR = this.currentTOR.id
         await requester.untrackTOR(TOR)
     }
+
+    // @action check = ()=>{
+    //     this.currentTOR.checked = !this.currentTOR.checked
+    //     console.log(this.currentTOR)
+    // }
 }
 // let verge = new Forest()
 // let TOR = async () => {
