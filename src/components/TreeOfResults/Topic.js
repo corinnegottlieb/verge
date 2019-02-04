@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react';
+import Check from './ContextMenu/Check';
 
 @inject("lumberYard")
 @observer
@@ -13,10 +14,12 @@ class Topic extends Component {
         <div className={`level${currentTOR.level} singleTopic`} id={currentTOR.name}>
           {currentTOR.name}
         </div>
+        <Check />
         {currentTOR.children ?
           currentTOR.children.map(c => {
-            return (
+            return (<div>
               <Topic key={c.name} currentTOR={c} />
+              </div>
             )
           }) :
           null}
