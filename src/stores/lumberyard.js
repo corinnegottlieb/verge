@@ -18,7 +18,7 @@ class Topic {
 }
 
 class LumberYard {
-    @observable currentTOR = { name: '', children: [] }
+    @observable currentTOR = { name: '', children: [], tracked: false}
     @observable savedTORS = []
     @observable searchValue = ''
 
@@ -44,6 +44,9 @@ class LumberYard {
                 this.findTopicByName(name, c)
             })
         } 
+    }
+    @action toggleTracked = () => {
+        this.currentTOR.tracked = !this.currentTOR.tracked
     }
     @action getAllTrackedTORs = async () => {
         let trackedTORs = await requester.getAllTrackedTORs()
