@@ -21,19 +21,27 @@ class LumberYard {
     @observable currentTOR = { name: '', children: [] }
     @observable savedTORS = []
     @observable searchValue = ''
+    @observable currentNote = ''
 
     @action createTopic = topic => {
         let newTopic = new Topic(topic)
         return newTopic
     }
     @action handleInput = (value) => {
+        this.currentNote = value
+    }
+    @action handleSearchInput = (value) => {
         this.searchValue = value
         // console.log(this.searchValue)
     }
+
+
+
     @action getNewTOR = async () => {
         let topicData = await requester.getNewTopicData(this.searchValue)
         console.log(topicData)
         this.currentTOR = topicData
+        console.log(this.currentTOR)
     }
     @action findTopicByName = (name, topic) => {
         const currentTopic = topic ? topic : this.currentTOR
@@ -45,6 +53,43 @@ class LumberYard {
             })
         } 
     }
+
+    @action findTopicByNameAndMarkAsRead = (name, topic) => {
+        const currentTopic = topic ? topic : this.currentTOR
+        if (currentTopic.name === name) {
+            currentTopic.checked = !currentTopic.checked
+        } else if (currentTopic.children) {
+            currentTopic.children.forEach(c => {
+                this.findTopicByNameAndMarkAsRead(name, c)
+            })
+        }
+    }
+
+    @action findTopicByNameAndAddNote = (name, topic) => {
+        const currentTopic = topic ? topic : this.currentTOR
+        if (currentTopic.name === name) {
+            currentTopic.note = this.currentNote
+        } else if (currentTopic.children) {
+            currentTopic.children.forEach(c => {
+                this.findTopicByNameAndAddNote(name, c)
+            })
+        }
+    }
+
+    @action findTopicByNameAndRemove = (name, topic, parent) => {
+        const currentParent = parent ? parent : null
+        const currentTopic = topic ? topic : this.currentTOR
+        if (currentTopic.name === name) {
+            let index = currentParent.children.indexOf(currentTopic)
+            currentParent.children.splice(index, 1)
+        } else if (currentTopic.children) {
+            let currentParent = currentTopic
+            currentTopic.children.forEach(c => {
+                this.findTopicByNameAndRemove(name, c, currentParent)
+            })
+        }
+    }
+
     @action getAllTrackedTORs = async () => {
         let trackedTORs = await requester.getAllTrackedTORs()
         this.savedTORS = trackedTORs
@@ -78,6 +123,11 @@ class LumberYard {
         let TOR = this.currentTOR.id
         await requester.untrackTOR(TOR)
     }
+
+    // @action check = ()=>{
+    //     this.currentTOR.checked = !this.currentTOR.checked
+    //     console.log(this.currentTOR)
+    // }
 }
 // let verge = new Forest()
 // let TOR = async () => {

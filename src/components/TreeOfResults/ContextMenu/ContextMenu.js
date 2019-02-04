@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import OpenNote from './OpenNote';
 import OpenWikiView from './WikiView';
 import Remove from './Remove';
-import Check from './Check';
+import Check from '../Check';
 
 class ContextMenu extends Component {
     render() {
@@ -11,7 +11,6 @@ class ContextMenu extends Component {
                 <OpenNote />
                 <OpenWikiView />
                 <Remove />
-                <Check />
             </div>
         )
     }
