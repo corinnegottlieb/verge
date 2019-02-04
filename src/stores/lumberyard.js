@@ -18,7 +18,7 @@ class Topic {
 }
 
 class LumberYard {
-    @observable currentTOR = {name:'', children:[]}
+    @observable currentTOR = { name: '', children: [] }
     @observable savedTORS = []
     @observable searchValue = ''
 
@@ -28,7 +28,7 @@ class LumberYard {
     }
     @action handleInput = (value) => {
         this.searchValue = value
-        console.log(this.searchValue)
+        // console.log(this.searchValue)
     }
     @action getNewTOR = async () => {
         let topicData = await requester.getNewTopicData(this.searchValue)
