@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
+import Topic from '../TreeOfResults/Topic';
 
 @inject("lumberYard")
 @observer

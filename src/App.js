@@ -5,6 +5,7 @@ import { observer } from 'mobx-react'
 import NavBar from './components/NavBar/Navbar';
 // import TORView from './components/TreeOfResults/TORView';
 import Topic from './components/TreeOfResults/Topic';
+import WikiView from './components/TreeOfResults/ContextMenu/WikiView';
 
 
 @observer
