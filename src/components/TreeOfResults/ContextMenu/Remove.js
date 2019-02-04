@@ -6,7 +6,6 @@ import { observer, inject } from 'mobx-react';
 class Remove extends Component {
 
   remove=(event)=>{
-    console.log(event.target.name)
     this.props.lumberYard.findTopicByNameAndRemove(event.target.name)
   }
   render() {
