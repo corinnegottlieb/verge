@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react';
 import Check from './Check';
 import Note from './Note';
+import Remove from './ContextMenu/Remove';
 
 @inject("lumberYard")
 @observer
@@ -16,6 +17,7 @@ class Topic extends Component {
         </div>
         <Check name={currentTOR.name}/>
         <Note name={currentTOR.name} />
+        <Remove name={currentTOR.name}/>
         {currentTOR.children ?
           currentTOR.children.map(c => {
             return (<div>

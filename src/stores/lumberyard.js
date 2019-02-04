@@ -66,8 +66,6 @@ class LumberYard {
     }
 
     @action findTopicByNameAndAddNote = (name, topic) => {
-        console.log(name)
-        console.log(this.currentNote)
         const currentTopic = topic ? topic : this.currentTOR
         if (currentTopic.name === name) {
             currentTopic.note = this.currentNote
@@ -78,6 +76,19 @@ class LumberYard {
         }
     }
 
+    @action findTopicByNameAndRemove = (name, topic, parent) => {
+        const currentParent = parent ? parent : null
+        const currentTopic = topic ? topic : this.currentTOR
+        if (currentTopic.name === name) {
+            let index = currentParent.children.indexOf(currentTopic)
+            currentParent.children.splice(index, 1)
+        } else if (currentTopic.children) {
+            let currentParent = currentTopic
+            currentTopic.children.forEach(c => {
+                this.findTopicByNameAndRemove(name, c, currentParent)
+            })
+        }
+    }
 
     @action getAllTrackedTORs = async () => {
         let trackedTORs = await requester.getAllTrackedTORs()
