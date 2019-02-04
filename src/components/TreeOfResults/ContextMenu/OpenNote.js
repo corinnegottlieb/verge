@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class OpenNote extends Component {
   render() {
     return (
-      <div>Open Note Editor</div>
+      <div onClick={this.showNote}>Open Note Editor</div>
     )
   }
 }

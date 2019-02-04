@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 import ContextMenu from './ContextMenu/ContextMenu';
-import Check from './ContextMenu/Check';
+import Check from './Check';
 
 @inject("lumberYard")
 @observer

@@ -21,15 +21,22 @@ class LumberYard {
     @observable currentTOR = { name: '', children: [] }
     @observable savedTORS = []
     @observable searchValue = ''
+    @observable currentNote = ''
 
     @action createTopic = topic => {
         let newTopic = new Topic(topic)
         return newTopic
     }
     @action handleInput = (value) => {
+        this.currentNote = value
+    }
+    @action handleSearchInput = (value) => {
         this.searchValue = value
         // console.log(this.searchValue)
     }
+
+
+
     @action getNewTOR = async () => {
         let topicData = await requester.getNewTopicData(this.searchValue)
         console.log(topicData)
@@ -45,9 +52,6 @@ class LumberYard {
                 this.findTopicByName(name, c)
             })
         }
-        // else {
-        //     return
-        // }
     }
 
     @action findTopicByNameAndMarkAsRead = (name, topic) => {
@@ -58,7 +62,22 @@ class LumberYard {
             currentTopic.children.forEach(c => {
                 this.findTopicByNameAndMarkAsRead(name, c)
             })
-        } }
+        }
+    }
+
+    @action findTopicByNameAndAddNote = (name, topic) => {
+        console.log(name)
+        console.log(this.currentNote)
+        const currentTopic = topic ? topic : this.currentTOR
+        if (currentTopic.name === name) {
+            currentTopic.note = this.currentNote
+        } else if (currentTopic.children) {
+            currentTopic.children.forEach(c => {
+                this.findTopicByNameAndAddNote(name, c)
+            })
+        }
+    }
+
 
     @action getAllTrackedTORs = async () => {
         let trackedTORs = await requester.getAllTrackedTORs()

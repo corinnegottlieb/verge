@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react';
+import Check from './Check';
+import Note from './Note';
 
 @inject("lumberYard")
 @observer
@@ -7,16 +9,18 @@ import { observer, inject } from 'mobx-react';
 class Topic extends Component {
 
   topicRenderer = (currentTOR) => {
-    console.log('currentTOR -', currentTOR.name)
     return (
       <div>
         <div className={`level${currentTOR.level} singleTopic`} id={currentTOR.name}>
           {currentTOR.name}
         </div>
+        <Check name={currentTOR.name}/>
+        <Note name={currentTOR.name} />
         {currentTOR.children ?
           currentTOR.children.map(c => {
-            return (
+            return (<div>
               <Topic key={c.name} currentTOR={c} />
+              </div>
             )
           }) :
           null}
