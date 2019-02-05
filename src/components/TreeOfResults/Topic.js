@@ -4,6 +4,7 @@ import Popup from "reactjs-popup";
 import Check from './Check';
 import Note from './Note';
 import Remove from './ContextMenu/Remove';
+import TrackTOR from './TrackTOR';
 
 @inject("lumberYard")
 @observer
