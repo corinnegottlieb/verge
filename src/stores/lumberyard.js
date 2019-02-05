@@ -21,7 +21,6 @@ class LumberYard {
     @observable currentTOR = { name: '', children: [], tracked: false}
     @observable savedTORS = []
     @observable searchValue = ''
-    @observable currentNote = ''
     @observable showNote = false
 
     // @action createTopic = topic => {
