@@ -10,7 +10,6 @@ import WikiView from './components/TreeOfResults/ContextMenu/WikiView';
 import Rank from './components/TreeOfResults/ContextMenu/Rank';
 import Note from './components/TreeOfResults/Note';
 import TrackTOR from './components/TreeOfResults/TrackTOR';
-import TORView from './components/TreeOfResults/TORView';
 
 @observer
 class App extends Component {
