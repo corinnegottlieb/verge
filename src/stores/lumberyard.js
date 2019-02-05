@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx';
+import { observable, action, computed } from 'mobx';
 import Requester from './Requester';
 const requester = new Requester();
 
@@ -29,7 +29,7 @@ class LumberYard {
             func(currentTopic)
         } else if (currentTopic.children) {
             currentTopic.children.forEach(c => {
-                this.findTopicByName(name, func, c)
+                this.findTopicByName(name, func = func, topic = c)
             })
         } 
     }
@@ -68,6 +68,11 @@ class LumberYard {
             currentTopic.children.forEach(c => {
                 this.findTopicByNameAndRemove(name, c, currentParent)
             })
+        }
+    }
+    @action updateTOR = async () => {
+        if (this.currentTOR.tracked) {
+            await requester.updateTrackedTOR(this.currentTOR)
         }
     }
     @action toggleTracked = () => {

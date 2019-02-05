@@ -14,7 +14,9 @@ class Requester {
     }
     trackTOR = async (TOR) => {
         await Axios.post(`http://localhost:8000/tor`, TOR)
-        console.log(`Saved TOR ${TOR}`)
+    }
+    updateTrackedTOR = async (TOR) => {
+        await Axios.put(`http://localhost:8000/tracked`, TOR)
     }
     untrackTOR = async (name) => {
         await Axios.delete(`http://localhost:8000/tracked/${name}`)
@@ -22,10 +24,6 @@ class Requester {
     updateRelevance = async (id, TOR, bool) => {
         await Axios.put(`http://localhost:8000/topic/${id}`, TOR)
         console.log("updated relevance")
-    }
-    updateTrackedTOR = async (id, TOR) => {
-        await Axios.put(`http://localhost:8000/topic/${id}`, TOR)
-        console.log(`Saved TOR`)
     }
     // post to relevance collection
 }

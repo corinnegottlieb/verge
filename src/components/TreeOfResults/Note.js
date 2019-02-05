@@ -11,11 +11,11 @@ class Note extends Component {
     //     console.log(event.target.name)
     //     this.props.lumberYard.handleInput(event.target.value)
     // }
+    
+    saveNote = () => {
+        this.props.lumberYard.updateTOR()
+    }
 
-    // saveNote =(event)=>{
-    //     console.log(event.target.name)
-    //     this.props.lumberYard.findTopicByNameAndAddNote(event.target.name)
-    //     }
     addNote = (event) => {
         this.props.lumberYard.findTopicByNameAndAddNote(event.target.name, event.target.value)
 
@@ -26,7 +26,7 @@ class Note extends Component {
         return (
             <div>
                 <textarea className="note-textarea" name={this.props.cTOR.name} placeholder="Enter notes..." value={this.props.cTOR.note ? this.props.cTOR.note : null} onChange={this.addNote}></textarea>
-                {/* <button name ={this.props.name} onClick={this.saveNote}>Save</button> */}
+                <button name={this.props.cTOR.name} onClick={this.saveNote}>Save</button>
             </div>
         )
     }
