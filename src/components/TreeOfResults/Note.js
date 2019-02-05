@@ -12,22 +12,20 @@ class Note extends Component {
     //     this.props.lumberYard.handleInput(event.target.value)
     // }
     
-    // saveNote =(event)=>{
-    //     console.log(event.target.name)
-    //     this.props.lumberYard.findTopicByNameAndAddNote(event.target.name)
-    //     }
-addNote = (event)=>{
-    if (event.which === 13) {
+    saveNote = () => {
+        this.props.lumberYard.updateTOR()
+    }
+
+    addNote = (event) => {
         this.props.lumberYard.findTopicByNameAndAddNote(event.target.name, event.target.value)
     }
-}
 
     render() {
 
         return (
             <div>
-          <textarea name={this.props.name} placeholder="Enter notes..." onKeyDown={this.addNote}></textarea>
-          {/* <button name ={this.props.name} onClick={this.saveNote}>Save</button> */}
+                <textarea placeholder="Enter notes" onChange={this.addNote} name={this.props.name}></textarea>
+                <button name={this.props.name} onClick={this.saveNote}>Save</button>
             </div>
         )
     }

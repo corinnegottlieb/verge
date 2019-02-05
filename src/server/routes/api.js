@@ -37,9 +37,13 @@ router.post('/tor', function(req, res){
 })
 
 // UPDATE EXISTING TRACKEDTOR IN DB
-router.put('/tracked/:id', async function(req, res){
-  let tree = await Topic.findByIdAndUpdate(req.params.id, req.body, {new: true})
-        res.send(tree)
+router.put('/tracked', function(req, res){
+    let toUpdate = new TOR(req.body)
+    console.log(toUpdate.name)
+    TOR.findOneAndDelete({name: toUpdate.name},function(err, data) {
+        toUpdate.save()
+        res.end()
+    })
 })
 
 // REMOVE TRACKEDTOR FROM DB
@@ -50,6 +54,5 @@ router.delete(`/tracked/:name`, function(req, res){
     res.end()
 })
 
-// post route for relevance collection ** 
 
-module.exports = router
+module.exports = router;
