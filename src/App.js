@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 import { observer } from 'mobx-react'
 import NavBar from './components/NavBar/Navbar';
-// import TORView from './components/TreeOfResults/TORView';
 import Topic from './components/TreeOfResults/Topic';
 import WikiView from './components/TreeOfResults/ContextMenu/WikiView';
 import Rank from './components/TreeOfResults/ContextMenu/Rank';
@@ -18,8 +17,7 @@ class App extends Component {
         <div className="App">
           <NavBar />
           <TrackTOR />
-          <Topic />
-          {/* <Route path="/TOR" exact component = {Topic} /> */}
+          <Route path="/TOR" exact component={Topic} />
         </div>
       </Router>
     );
