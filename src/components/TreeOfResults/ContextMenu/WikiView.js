@@ -13,7 +13,7 @@ class WikiView extends Component {
     const Menu = () => (
       <div className="menu">
         <Popup
-          trigger={<div className="menu-item"> sup Menu </div>}
+          trigger={<div className="singleTopic"> sup Menu </div>}
           position="right top"
           on="hover"
           closeOnDocumentClick

@@ -5,6 +5,7 @@ import Check from './Check';
 import Note from './Note';
 import Remove from './ContextMenu/Remove';
 import TrackTOR from './TrackTOR'
+import OpenNote from './ContextMenu/OpenNote';
 
 @inject("lumberYard")
 @observer
@@ -50,7 +51,7 @@ class Topic extends Component {
         arrow={false}
       >
         <div className="menu">
-          {/* <OpenNote className="menu-item" /> */}
+          <OpenNote name={this.props.name} className="menu-item" />
           <Remove className="menu-item" />
           <Check className="menu-item" />
         </div>

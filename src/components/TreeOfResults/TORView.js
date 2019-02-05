@@ -3,6 +3,8 @@ import { observer, inject } from 'mobx-react';
 import ContextMenu from './ContextMenu/ContextMenu';
 import TrackTOR from './TrackTOR'
 import Check from './Check';
+import SingleTopic from './SingleTopic';
+import WikiView from './ContextMenu/WikiView';
 
 @inject("lumberYard")
 @observer
@@ -22,7 +24,7 @@ class TORView extends Component {
                 {cTOR.children ? 
                     cTOR.children.map(c => {return (<div>
                     <div>{this.buildHTMLTree(c)}</div>
-                    <Check name={c.name}/>
+                    
                     </div>)}) :
                     null}
             </div>
@@ -34,8 +36,8 @@ class TORView extends Component {
             <div>
                 <TrackTOR />
                 {this.buildHTMLTree(this.props.lumberYard.currentTOR)}
-                {this.props.lumberYard.currentTOR.children.map(c => 
-                    <SingleTopic topic={c} />)}
+                {/* {this.props.lumberYard.currentTOR.children.map(c => 
+                    <SingleTopic topic={c} />)} */}
             </div>
         )
     }

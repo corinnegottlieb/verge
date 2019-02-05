@@ -2,31 +2,32 @@ import { observable, action } from 'mobx';
 import Requester from './Requester';
 const requester = new Requester();
 
-class Topic {
-    @observable userID = 1
-    @observable relevance = null
-    @observable note = null
-    @observable tracked = false
-    @observable checked = false
-    constructor(value) {
-        this.value = value
-    }
+// class Topic {
+//     @observable userID = 1
+//     @observable relevance = null
+//     @observable note = null
+//     @observable tracked = false
+//     @observable checked = false
+//     constructor(value) {
+//         this.value = value
+//     }
 
-    @action handleNoteInput = value => {
-        this.note = value
-    }
-}
+//     @action handleNoteInput = value => {
+//         this.note = value
+//     }
+// }
 
 class LumberYard {
     @observable currentTOR = { name: '', children: [], tracked: false}
     @observable savedTORS = []
     @observable searchValue = ''
     @observable currentNote = ''
+    @observable showNote = false
 
-    @action createTopic = topic => {
-        let newTopic = new Topic(topic)
-        return newTopic
-    }
+    // @action createTopic = topic => {
+    //     let newTopic = new Topic(topic)
+    //     return newTopic
+    // }
     @action handleInput = (value) => {
         this.currentNote = value
     }
@@ -64,13 +65,13 @@ class LumberYard {
         }
     }
 
-    @action findTopicByNameAndAddNote = (name, topic) => {
+    @action findTopicByNameAndAddNote = (name, newNote, topic) => {
         const currentTopic = topic ? topic : this.currentTOR
         if (currentTopic.name === name) {
-            currentTopic.note = this.currentNote
+            currentTopic.note = newNote
         } else if (currentTopic.children) {
             currentTopic.children.forEach(c => {
-                this.findTopicByNameAndAddNote(name, c)
+                this.findTopicByNameAndAddNote(name, newNote, c)
             })
         }
     }
