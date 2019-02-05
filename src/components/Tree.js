@@ -6,10 +6,12 @@ import { observer, inject } from 'mobx-react';
 @observer
 class MyComponent extends React.Component {
   render() {
+    const data = [this.props.lumberYard.currentTOR]
+
     return (
-      <div id="treeWrapper" style={{width: '50em', height: '20em'}}>
+      <div id="treeWrapper" style={{width: '100vw', height: '100vh', marginTop: '50px'}}>
  
-        <Tree data={this.props.lumberYard.currentTOR} />
+        <Tree data={data} separation={{siblings: 0.2, nonSiblings: 0.5}} orientation={`vertical`} />
  
       </div>
     );
