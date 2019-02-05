@@ -32,7 +32,6 @@ class Scraper {
         topicHTML.each((i, elem) => 
             htmlString += $(elem)
         )
-        // console.log(htmlString)
         return htmlString
     }
 
@@ -94,7 +93,7 @@ class Scraper {
 
 }
 
-const scraper = new Scraper()
-scraper.test()
+// const scraper = new Scraper()
+// scraper.test()
 
 module.exports = Scraper;
