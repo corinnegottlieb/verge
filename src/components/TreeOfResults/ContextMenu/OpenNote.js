@@ -14,7 +14,7 @@ class OpenNote extends Component {
     trigger={  <div className="open-note-button">Open Note Editor</div>}
     modalcloseOnDocumentClick
     >
-      <Note name={this.props.name} /> 
+      <Note cTOR={this.props.cTOR} /> 
   
     </Popup>
   

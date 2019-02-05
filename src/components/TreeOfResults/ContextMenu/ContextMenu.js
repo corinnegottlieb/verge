@@ -8,7 +8,7 @@ class ContextMenu extends Component {
     render() {
         return (
             <div id="context-menu">
-                <OpenNote name={this.props.cTOR.name} />
+                <OpenNote cTOR={this.props.cTOR} />
                 <WikiView currentTopic={this.props.cTOR} />
                 <Remove name={this.props.cTOR.name} />
             </div>
