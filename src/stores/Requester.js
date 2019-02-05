@@ -13,8 +13,11 @@ class Requester {
         return topicData.data
     }
     trackTOR = async (TOR) => {
-        await Axios.post(`http://localhost:8000/topic`, TOR)
+        await Axios.post(`http://localhost:8000/tor`, TOR)
         console.log(`Saved TOR ${TOR}`)
+    }
+    untrackTOR = async (name) => {
+        await Axios.delete(`http://localhost:8000/tracked/${name}`)
     }
     updateRelevance = async (id, TOR, bool) => {
         await Axios.put(`http://localhost:8000/topic/${id}`, TOR)
@@ -23,9 +26,6 @@ class Requester {
     updateTrackedTOR = async (id, TOR) => {
         await Axios.put(`http://localhost:8000/topic/${id}`, TOR)
         console.log(`Saved TOR`)
-    }
-    untrackTOR = async (id, TOR) => {
-        await Axios.delete(`http://localhost:8000/tracked/${id}`, TOR)
     }
     // post to relevance collection
 }
