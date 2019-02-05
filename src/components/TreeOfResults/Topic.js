@@ -18,9 +18,9 @@ class Topic extends Component {
           id={currentTOR.name}>
           {currentTOR.name}
         </div>
-        <Check name={currentTOR.name} />
+        {/* <Check name={currentTOR.name} />
         <Note name={currentTOR.name} />
-        <Remove name={currentTOR.name} />
+        <Remove name={currentTOR.name} /> */}
         {currentTOR.children ?
           currentTOR.children.map(c => {
             return (<div>
