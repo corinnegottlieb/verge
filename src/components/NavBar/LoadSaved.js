@@ -9,7 +9,7 @@ export default class LoadSaved extends Component {
   render() {
     return (
       <div>
-        <button>Load saved TOR</button>
+        <button>Saved RoadMaps</button>
       </div>
     )
   }

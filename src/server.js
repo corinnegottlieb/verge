@@ -14,7 +14,8 @@ app.use(function (req, res, next) {
 })
 
 const mongoose = require('mongoose')
-mongoose.connect("mongodb://localhost/VergeDB")
+// mongoose.connect("mongodb://localhost/VergeDB")
+mongoose.connect('mongodb://localhost:27017/VergeDB', {useNewUrlParser: true})
 
 
 app.use('/', api)

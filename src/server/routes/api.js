@@ -3,7 +3,7 @@ const router = express.Router()
 
 const data = require(`../../DummyData`)
 const Scraper = require(`../scraper`)
-const Topic = require(`../models/TOR`)
+const TOR = require(`../models/TOR`)
 
 
 // GETS LIST OF SAVED TREE NAMES FROM DB
@@ -11,15 +11,6 @@ router.get('/tracked', async function(req, res){
    let trackedTORSs = await Topic.find({}).select('id name')
         res.send(trackedTORSs)    
     }) 
-
-// GETS NEW TOPIC INFO FROM USER INPUT
-
-// router.get(`/topic/dummyData`, (req, res) => {
-//     let TOR = data
-//     res.send(TOR)
-// })
-
-
 
 // // GETS NEW TOPIC INFO FROM USER INPUT
 router.get(`/topic/:searchValue`, async (req, res) => {
@@ -38,10 +29,11 @@ router.get('/tracked/:id', async function (req, res) {
 
 
 // SAVE NEW TREE IN DB
-router.post('/topic', function(req, res){
-    let TOR = new Topic(req.body)
-    TOR.save()
-    res.send(TOR)
+router.post('/tor', function(req, res){
+    console.log(req.body)
+    let toSave = new TOR(req.body)
+    toSave.save()
+    res.send(toSave)
 })
 
 // UPDATE EXISTING TRACKEDTOR IN DB
@@ -51,9 +43,11 @@ router.put('/tracked/:id', async function(req, res){
 })
 
 // REMOVE TRACKEDTOR FROM DB
-router.delete(`/tracked/:id`, function(req, res){
-    Topic.findByIdAndRemove(req.params.id).exec()
-    res.send(`Topic deleted from DB`)
+router.delete(`/tracked/:name`, function(req, res){
+    TOR.findOneAndDelete({name: req.params.name}, function(err, found) {
+        console.log(`deleted this object from db: ${found}`)
+    })
+    res.end()
 })
 
 // post route for relevance collection ** 

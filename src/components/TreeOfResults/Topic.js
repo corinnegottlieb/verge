@@ -4,7 +4,7 @@ import Popup from "reactjs-popup";
 import Check from './Check';
 import Note from './Note';
 import Remove from './ContextMenu/Remove';
-import TrackTOR from './TrackTOR';
+import TrackTOR from './TrackTOR'
 
 @inject("lumberYard")
 @observer
@@ -12,16 +12,19 @@ import TrackTOR from './TrackTOR';
 class Topic extends Component {
 
   topicRenderer = (currentTOR) => {
+    // console.log('currentTOR -', currentTOR.name)
     return (
       <div>
+        <div className="topicContainer">
+          {this.props.currentTOR ?
+            null :
+            <TrackTOR />}
+        </div>
         <div
           className={`level${currentTOR.level} singleTopic`}
           id={currentTOR.name}>
           {currentTOR.name}
         </div>
-        {/* <Check name={currentTOR.name} />
-        <Note name={currentTOR.name} />
-        <Remove name={currentTOR.name} /> */}
         {currentTOR.children ?
           currentTOR.children.map(c => {
             return (<div>
@@ -66,27 +69,27 @@ class Topic extends Component {
 
 export default Topic
 
-// topicRenderer = (currentTOR) => {
-//   return (
-//     <div>
-//       <div
-//         onClick={this.handleMouseHover}
-//         className={`level${currentTOR.level} singleTopic`}
-//         id={currentTOR.name}>
-//         {currentTOR.name}
-//       </div>
-//       {currentTOR.children ?
-//         currentTOR.children.map(c => {
-//           return (
-//             <div key={c.name}>
-//               <Topic currentTOR={c} />
-//               {this.state.isHovering ?
-//                 this.openContextMenu() :
-//                 null}
-//             </div>
-//           )
-//         }) :
-//         null}
-//     </div>
-//   )
-// }
+{/* topicRenderer = (currentTOR) => {
+  return (
+    <div>
+      <div
+        onClick={this.handleMouseHover}
+        className={`level${currentTOR.level} singleTopic`}
+        id={currentTOR.name}>
+        {currentTOR.name}
+      </div>
+      {currentTOR.children ?
+        currentTOR.children.map(c => {
+          return (
+            <div key={c.name}>
+              <Topic currentTOR={c} />
+              {this.state.isHovering ?
+                this.openContextMenu() :
+                null}
+            </div>
+          )
+        }) :
+        null}
+    </div>
+  )
+} */}
