@@ -4,8 +4,8 @@ import { observer, inject } from 'mobx-react';
 @inject("lumberYard")
 @observer
 class Note extends Component {
-    
-    
+
+
     // addNote = (event)=>{
     //     console.log(event.target.value)
     //     console.log(event.target.name)
@@ -18,14 +18,15 @@ class Note extends Component {
 
     addNote = (event) => {
         this.props.lumberYard.findTopicByNameAndAddNote(event.target.name, event.target.value)
+
     }
 
     render() {
 
         return (
             <div>
-                <textarea placeholder="Enter notes" onChange={this.addNote} name={this.props.name}></textarea>
-                <button name={this.props.name} onClick={this.saveNote}>Save</button>
+                <textarea className="note-textarea" name={this.props.cTOR.name} placeholder="Enter notes..." value={this.props.cTOR.note ? this.props.cTOR.note : null} onChange={this.addNote}></textarea>
+                <button name={this.props.cTOR.name} onClick={this.saveNote}>Save</button>
             </div>
         )
     }

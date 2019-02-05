@@ -41,7 +41,12 @@ code {
   cursor: default;
   margin: 5px 0;
   background-color: rgb(233, 227, 208);
+  font-weight: bold;
 }
+#context-menu {
+  font-weight: normal
+}
+
 
 .contextMenu {
   /* position: absolute;
@@ -63,4 +68,8 @@ code {
 }
 .level4 {
   text-indent: 120px;
+}
+
+#check{
+  position: inherit
 }
