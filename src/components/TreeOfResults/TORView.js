@@ -3,8 +3,6 @@ import { observer, inject } from 'mobx-react';
 import ContextMenu from './ContextMenu/ContextMenu';
 import TrackTOR from './TrackTOR'
 import Check from './Check';
-import SingleTopic from './SingleTopic';
-import WikiView from './ContextMenu/WikiView';
 
 @inject("lumberYard")
 @observer
@@ -17,7 +15,6 @@ class TORView extends Component {
             <div>
                 <div className={`level${cTOR.level} singleTopic`}
                     onClick={this.toggleMenu}
-                    // onMouseLeave={this.toggleMenu}
                     id={cTOR.name}>
                     {cTOR.name}
                     <Check name={cTOR.name} />
