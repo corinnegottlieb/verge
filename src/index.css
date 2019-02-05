@@ -46,8 +46,12 @@ code {
 #context-menu {
   font-weight: normal
 }
-
-
+.header {
+  font-weight: bold
+}
+.button{
+  margin: 5px;
+}
 .contextMenu {
   /* position: absolute;
   top: 0;
