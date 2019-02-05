@@ -2,57 +2,40 @@ import { observable, action } from 'mobx';
 import Requester from './Requester';
 const requester = new Requester();
 
-// class Topic {
-//     @observable userID = 1
-//     @observable relevance = null
-//     @observable note = null
-//     @observable tracked = false
-//     @observable checked = false
-//     constructor(value) {
-//         this.value = value
-//     }
-
-//     @action handleNoteInput = value => {
-//         this.note = value
-//     }
-// }
-
 class LumberYard {
     @observable currentTOR = { name: '', children: [], tracked: false}
     @observable savedTORS = []
     @observable searchValue = ''
     @observable showNote = false
 
-    // @action createTopic = topic => {
-    //     let newTopic = new Topic(topic)
-    //     return newTopic
-    // }
     @action handleInput = (value) => {
         this.currentNote = value
     }
     @action handleSearchInput = (value) => {
         this.searchValue = value
-        // console.log(this.searchValue)
     }
-
-
-
+    
     @action getNewTOR = async () => {
         let topicData = await requester.getNewTopicData(this.searchValue)
         console.log(topicData)
         this.currentTOR = topicData
     }
-    @action findTopicByName = (name, topic) => {
+    @action toggleMenu = (currentTopic) => {
+        currentTopic.menu = !currentTopic.menu
+    }
+    @action findTopicByName = (name, func, topic) => {
         const currentTopic = topic ? topic : this.currentTOR
         if (currentTopic.name === name) {
-            currentTopic.menu = !currentTopic.menu
+            func(currentTopic)
         } else if (currentTopic.children) {
             currentTopic.children.forEach(c => {
-                this.findTopicByName(name, c)
+                this.findTopicByName(name, func, c)
             })
         } 
     }
-
+    @action getTORList = async () => {
+        this.savedTORS = await requester.getAllTrackedTORs()
+    }
     @action findTopicByNameAndMarkAsRead = (name, topic) => {
         const currentTopic = topic ? topic : this.currentTOR
         if (currentTopic.name === name) {
@@ -74,7 +57,6 @@ class LumberYard {
             })
         }
     }
-
     @action findTopicByNameAndRemove = (name, topic, parent) => {
         const currentParent = parent ? parent : null
         const currentTopic = topic ? topic : this.currentTOR
@@ -88,7 +70,6 @@ class LumberYard {
             })
         }
     }
-
     @action toggleTracked = () => {
         this.currentTOR.tracked = !this.currentTOR.tracked
         if (this.currentTOR.tracked) {
@@ -101,8 +82,8 @@ class LumberYard {
         let trackedTORs = await requester.getAllTrackedTORs()
         this.savedTORS = trackedTORs
     }
-    @action getTORData = async () => {
-        let TOR = await requester.getTORData()
+    @action getTORData = async (name) => {
+        let TOR = await requester.getTORData(name)
         this.currentTOR = TOR
     }
     @action trackTOR = async () => {
@@ -130,20 +111,7 @@ class LumberYard {
         await requester.untrackTOR(TOR)
     }
 
-    // @action check = ()=>{
-    //     this.currentTOR.checked = !this.currentTOR.checked
-    //     console.log(this.currentTOR)
-    // }
 }
-// let verge = new Forest()
-// let TOR = async () => {
-//     await verge.getNewTOR()
-//     console.log(verge.currentTOR)
-// }
-// TOR()
-
-// verge.getNewTOR()
-// export default verge
 
 const lumberYard = new LumberYard()
 

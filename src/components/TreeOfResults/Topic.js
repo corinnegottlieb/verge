@@ -16,11 +16,6 @@ class Topic extends Component {
     // console.log('currentTOR -', currentTOR.name)
     return (
       <div>
-        <div className="topicContainer">
-          {this.props.currentTOR ?
-            null :
-            <TrackTOR />}
-        </div>
         <div
           className={`level${currentTOR.level} singleTopic`}
           id={currentTOR.name}>
@@ -61,9 +56,14 @@ class Topic extends Component {
 
   render() {
     return (
-      this.props.currentTOR ?
-        this.contextMenuPopup(this.props.currentTOR) :
-        this.contextMenuPopup(this.props.lumberYard.currentTOR)
+      <div class="TORContainer">
+        {this.props.currentTOR ?
+          null :
+          <TrackTOR />}
+        {this.props.currentTOR ?
+          this.contextMenuPopup(this.props.currentTOR) :
+          this.contextMenuPopup(this.props.lumberYard.currentTOR)}
+      </div>
     )
   }
 }

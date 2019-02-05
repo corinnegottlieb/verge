@@ -8,8 +8,8 @@ const TOR = require(`../models/TOR`)
 
 // GETS LIST OF SAVED TREE NAMES FROM DB
 router.get('/tracked', async function(req, res){
-   let trackedTORSs = await Topic.find({}).select('id name')
-        res.send(trackedTORSs)    
+   let trackedTORS = await TOR.find({}).select('name')
+        res.send(trackedTORS)    
     }) 
 
 // // GETS NEW TOPIC INFO FROM USER INPUT
@@ -21,9 +21,9 @@ router.get(`/topic/:searchValue`, async (req, res) => {
 })
 
 // GETS SPECIFIC SAVED TOR FROM DB
-router.get('/tracked/:id', async function (req, res) {
-    let TOR = Topic.findById(req.params.id).exec()
-    res.send(TOR)
+router.get('/tracked/:name', async function (req, res) {
+    let toSend = await TOR.findOne({name: req.params.name})
+    res.send(toSend)
 })
 
 
