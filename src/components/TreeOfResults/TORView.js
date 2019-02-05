@@ -16,14 +16,16 @@ class TORView extends Component {
         return (
             <div>
                 <div className={`level${cTOR.level} singleTopic`}
-                    onMouseEnter={this.toggleMenu} onMouseLeave={this.toggleMenu} id={cTOR.name}>
-                    <Check name={cTOR.name}/>
+                    onClick={this.toggleMenu}
+                    // onMouseLeave={this.toggleMenu}
+                    id={cTOR.name}>
                     {cTOR.name}
+                    <Check name={cTOR.name} />
                     {cTOR.menu ? <ContextMenu cTOR={cTOR} /> : null}
                 </div>
-                {cTOR.children ? 
-                    cTOR.children.map(c => 
-                    <div>{this.buildHTMLTree(c)}</div>
+                {cTOR.children ?
+                    cTOR.children.map(c =>
+                        <div>{this.buildHTMLTree(c)}</div>
                     ) :
                     null}
             </div>
