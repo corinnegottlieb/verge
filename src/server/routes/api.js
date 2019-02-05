@@ -1,18 +1,25 @@
 const express = require(`express`)
 const router = express.Router()
-
-const data = require(`../../DummyData`)
+// const data = require(`../../DummyData`)
 const Scraper = require(`../scraper`)
 const TOR = require(`../models/TOR`)
 
+// GET SUBTOPIC HTML FROM WIKIPEDIA PAGE
+router.get(`/subtopic/:searchValue/:subTopicName`, async function(req, res) {
+    const scraper = new Scraper()
+    // console.log(req.params.searchValue)
+    // console.log(req.params.subTopicName)
+    let subTopicHTML = await scraper.getTopicData(req.params.searchValue, req.params.subTopicName)
+    res.send(subTopicHTML)
+})
 
-// GETS LIST OF SAVED TREE NAMES FROM DB
+// GET NAME LIST OF ALL SAVED DBs
 router.get('/tracked', async function(req, res){
    let trackedTORS = await TOR.find({}).select('name')
         res.send(trackedTORS)    
     }) 
 
-// // GETS NEW TOPIC INFO FROM USER INPUT
+// GETS NEW SEARCHQUERY FROM WIKIPEDIA
 router.get(`/topic/:searchValue`, async (req, res) => {
     const searchQuery = req.params.searchValue
     const scraper = new Scraper()
@@ -25,8 +32,6 @@ router.get('/tracked/:name', async function (req, res) {
     let toSend = await TOR.findOne({name: req.params.name})
     res.send(toSend)
 })
-
-
 
 // SAVE NEW TREE IN DB
 router.post('/tor', function(req, res){
