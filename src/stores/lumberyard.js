@@ -6,15 +6,15 @@ class LumberYard {
     @observable currentTOR = { name: '', children: [], tracked: false}
     @observable savedTORS = []
     @observable searchValue = ''
-    @observable currentNote = ''
+    @observable showNote = false
 
     @action handleInput = (value) => {
         this.currentNote = value
     }
     @action handleSearchInput = (value) => {
         this.searchValue = value
-        // console.log(this.searchValue)
     }
+    
     @action getNewTOR = async () => {
         let topicData = await requester.getNewTopicData(this.searchValue)
         console.log(topicData)
@@ -46,13 +46,14 @@ class LumberYard {
             })
         }
     }
-    @action findTopicByNameAndAddNote = (name, topic) => {
+
+    @action findTopicByNameAndAddNote = (name, newNote, topic) => {
         const currentTopic = topic ? topic : this.currentTOR
         if (currentTopic.name === name) {
-            currentTopic.note = this.currentNote
+            currentTopic.note = newNote
         } else if (currentTopic.children) {
             currentTopic.children.forEach(c => {
-                this.findTopicByNameAndAddNote(name, c)
+                this.findTopicByNameAndAddNote(name, newNote, c)
             })
         }
     }
@@ -110,20 +111,7 @@ class LumberYard {
         await requester.untrackTOR(TOR)
     }
 
-    // @action check = ()=>{
-    //     this.currentTOR.checked = !this.currentTOR.checked
-    //     console.log(this.currentTOR)
-    // }
 }
-// let verge = new Forest()
-// let TOR = async () => {
-//     await verge.getNewTOR()
-//     console.log(verge.currentTOR)
-// }
-// TOR()
-
-// verge.getNewTOR()
-// export default verge
 
 const lumberYard = new LumberYard()
 

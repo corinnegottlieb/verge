@@ -3,6 +3,8 @@ import { observer, inject } from 'mobx-react';
 import ContextMenu from './ContextMenu/ContextMenu';
 import TrackTOR from './TrackTOR'
 import Check from './Check';
+import SingleTopic from './SingleTopic';
+import WikiView from './ContextMenu/WikiView';
 
 @inject("lumberYard")
 @observer
