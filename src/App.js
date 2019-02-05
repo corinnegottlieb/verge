@@ -8,6 +8,7 @@ import Topic from './components/TreeOfResults/Topic';
 import WikiView from './components/TreeOfResults/ContextMenu/WikiView';
 import Rank from './components/TreeOfResults/ContextMenu/Rank';
 import Note from './components/TreeOfResults/Note';
+import TrackTOR from './components/TreeOfResults/TrackTOR';
 
 @observer
 class App extends Component {
@@ -16,7 +17,9 @@ class App extends Component {
       <Router>
         <div className="App">
           <NavBar />
-          <Route path="/TOR" exact component = {Topic} />
+          <TrackTOR />
+          <Topic />
+          {/* <Route path="/TOR" exact component = {Topic} /> */}
         </div>
       </Router>
     );
