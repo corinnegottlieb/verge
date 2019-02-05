@@ -52,7 +52,9 @@ class LumberYard {
             })
         } 
     }
-
+    @action getTORList = async () => {
+        this.savedTORS = await requester.getAllTrackedTORs()
+    }
     @action findTopicByNameAndMarkAsRead = (name, topic) => {
         const currentTopic = topic ? topic : this.currentTOR
         if (currentTopic.name === name) {
@@ -101,8 +103,8 @@ class LumberYard {
         let trackedTORs = await requester.getAllTrackedTORs()
         this.savedTORS = trackedTORs
     }
-    @action getTORData = async () => {
-        let TOR = await requester.getTORData()
+    @action getTORData = async (name) => {
+        let TOR = await requester.getTORData(name)
         this.currentTOR = TOR
     }
     @action trackTOR = async () => {

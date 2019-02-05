@@ -3,7 +3,8 @@ const Schema = mongoose.Schema
 
 const torSchema = new Schema({
     name: String,
-    children: Array
+    children: Array,
+    tracked: Boolean
 })
 
 const TOR = mongoose.model(`TOR`, torSchema)

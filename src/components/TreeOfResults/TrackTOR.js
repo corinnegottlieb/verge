@@ -9,10 +9,6 @@ class TrackTOR extends Component {
   }
   render() {
     return (
-      // <label>
-      //   <input type="checkbox" className="filled-in" onClick={this.props.lumberYard.trackTOR} />
-      //   <span>Track Tree</span>
-      // </label>
       <div className={`pin ${this.props.lumberYard.currentTOR.tracked}`} onClick={this.toggleTracked}>
         <i className="fas fa-thumbtack"></i>
       </div>
