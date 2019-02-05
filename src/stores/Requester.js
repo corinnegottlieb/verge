@@ -2,11 +2,11 @@ import Axios from "axios";
 class Requester {
     getAllTrackedTORs = async () => {
         const trackedTORs = await Axios.get("http://localhost:8000/tracked")
-        return trackedTORs
+        return trackedTORs.data
     }
-    getTORData = async (id) => {
-        const TORData = await Axios.get(`http://localhost:8000/tracked/${id}`)
-        return TORData
+    getTORData = async (name) => {
+        const TORData = await Axios.get(`http://localhost:8000/tracked/${name}`)
+        return TORData.data
     }
     getNewTopicData = async (searchValue) => {
         const topicData = await Axios.get(`http://localhost:8000/topic/${searchValue}`)
