@@ -109,15 +109,14 @@ class LumberYard {
         this.currentTOR.tracked = !this.currentTOR.tracked
 
         let newTOR = {
-            value: {
-                name: this.currentTOR.value.value.name,
-                url: this.currentTOR.value.value.link,
-                relevance: this.currentTOR.relevance,
-                tracked: this.currentTOR.tracked,
-                checked: this.currentTOR.checked,
-                note: this.currentTOR.note
-            },
-            children: this.currentTOR.value.children
+            name: this.currentTOR.name,
+            level: this.currentTOR.level,
+            children: this.currentTOR.children,
+            url: this.currentTOR.url,
+            relevance: this.currentTOR.relevance,
+            tracked: this.currentTOR.tracked,
+            checked: this.currentTOR.checked,
+            note: this.currentTOR.note,
         }
         await requester.trackTOR(newTOR)
 
