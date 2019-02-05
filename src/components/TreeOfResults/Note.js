@@ -4,13 +4,6 @@ import { observer, inject } from 'mobx-react';
 @inject("lumberYard")
 @observer
 class Note extends Component {
-
-
-    // addNote = (event)=>{
-    //     console.log(event.target.value)
-    //     console.log(event.target.name)
-    //     this.props.lumberYard.handleInput(event.target.value)
-    // }
     
     saveNote = () => {
         this.props.lumberYard.updateTOR()
