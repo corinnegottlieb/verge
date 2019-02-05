@@ -38,10 +38,10 @@ class WikiView extends Component {
 
 export default WikiView
 
-{/* <Popup
+/* <Popup
         trigger={<button className="black-text btn waves-effect waves-light #efebe9 brown lighten-5">{this.props.currentTopic.name}</button>} position="right center">
         <iframe title="wikiVIEW" src={this.props.currentTopic.url}
           width="1010px"
           height="550px"
           position="relative" />
-      </Popup> */}
+      </Popup> */
