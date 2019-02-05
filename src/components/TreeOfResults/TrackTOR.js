@@ -9,7 +9,7 @@ class TrackTOR extends Component {
   }
   render() {
     return (
-      <div className={`pin ${this.props.lumberYard.currentTOR.tracked}`} onClick={this.toggleTracked}>
+      <div className={`pin${this.props.lumberYard.currentTOR.tracked}`} onClick={this.toggleTracked}>
         <i className="fas fa-thumbtack"></i>
       </div>
     )

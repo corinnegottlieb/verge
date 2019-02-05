@@ -18,7 +18,16 @@ code {
   position: relative;
 }
 
-.pin {
+.pinfalse {
+  font-size: 150%;
+  position: absolute;
+  right: 30px;
+  top: 10px;
+  cursor: pointer;
+  color: rgb(170, 170, 170);
+}
+
+.pintrue {
   font-size: 150%;
   position: absolute;
   right: 30px;
