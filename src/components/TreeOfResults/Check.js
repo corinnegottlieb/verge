@@ -5,13 +5,13 @@ import { observer, inject } from 'mobx-react';
 @observer
 class Check extends Component {
   markAsRead = (event) => {
-    console.log(event.target.name)
     this.props.lumberYard.findTopicByNameAndMarkAsRead(event.target.name)
+    this.props.lumberYard.updateTOR()
   }
   render() {
     return (
       <label>
-        <input id="check" type="checkbox" name={this.props.name} onClick={this.markAsRead} />
+        <input checked={this.props.cTOR.checked ? true : false} id="check" type="checkbox" name={this.props.cTOR.name} onClick={this.markAsRead} />
         <span></span>
       </label>
     )

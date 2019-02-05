@@ -17,7 +17,7 @@ class TORView extends Component {
                     onClick={this.toggleMenu}
                     id={cTOR.name}>
                     {cTOR.name}
-                    <Check name={cTOR.name} />
+                    <Check cTOR={cTOR} />
                     {cTOR.menu ? <ContextMenu cTOR={cTOR} /> : null}
                 </div>
                 {cTOR.children ?

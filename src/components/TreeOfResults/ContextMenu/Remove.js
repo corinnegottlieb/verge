@@ -7,6 +7,7 @@ class Remove extends Component {
 
   remove=(event)=>{
     this.props.lumberYard.findTopicByNameAndRemove(event.target.name)
+    this.props.lumberYard.updateTOR()
   }
   render() {
     return (
