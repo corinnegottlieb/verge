@@ -13,3 +13,8 @@
 .menu-item:hover {
   color: #2980b9;
 }
+/* 
+.note-textarea::placeholder { 
+  color: black;
+  opacity: 1;
+} */
