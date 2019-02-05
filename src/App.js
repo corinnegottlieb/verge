@@ -15,7 +15,6 @@ class App extends Component {
         <div className="App">
           <NavBar />
           {/* <Route path="/TOR" exact component={Topic} /> */}
-          <TORView />
           <Route path="/TOR" exact component={TORView} />
           <Route path="/TORList" exact component={TORList} />
         </div>
