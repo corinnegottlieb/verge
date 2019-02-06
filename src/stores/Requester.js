@@ -26,7 +26,14 @@ class Requester {
         console.log("updated relevance")
     }
     getSubTopicHTML = async (TORName, subTopic) => {
-        const topicHTML = await Axios.get(`http://localhost:8000/subtopic/${TORName}/${subTopic}`)
+        const topicHTML = await Axios.get(`http://localhost:8000/subtopic/`
+        , {
+            params: {
+              TORName: TORName,
+              subTopic: subTopic
+            }
+        })
+        console.log(topicHTML.data)
         return topicHTML.data
     }
     // post to relevance collection
