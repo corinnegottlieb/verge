@@ -26,7 +26,7 @@ class SearchBar extends Component {
     return (
       <div>
         <form>
-          <label for="searchThing">
+          <label htmlFor="searchThing">
             <input type="search"
               value={this.props.lumberYard.searchValue}
               placeholder="search" onChange={this.handleSearchInput}
