@@ -32,12 +32,7 @@ class TORView extends Component {
     render() {
         return (
             <div className="TORContainer">
-                {this.props.currentTOR ?
-                    null :
-                    <TrackTOR />}
-                    {this.props.currentTOR ?
-                    null :
-                    <TrackTOR />}
+                    <TrackTOR />
                     <Link to ="./tree">
                     <i className="fab fa-pagelines tree-icon"></i>
                     </Link>
