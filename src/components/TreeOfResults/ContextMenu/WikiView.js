@@ -17,7 +17,7 @@ class WikiView extends Component {
   }
 
   render() {
-    this.fillHTML()
+    // this.fillHTML()
     return (
 
     <Popup
