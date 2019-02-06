@@ -16,7 +16,9 @@ app.use(function (req, res, next) {
 
 const mongoose = require('mongoose')
 // mongoose.connect("mongodb://localhost/VergeDB")
-mongoose.connect('mongodb://localhost:27017/VergeDB', {useNewUrlParser: true})
+// mongoose.connect('mongodb://localhost:27017/VergeDB', {useNewUrlParser: true})
+mongoose.connect(process.env.CONNECTION_STRING||'mongodb://localhost/VergeDB')
+
 
 
 app.use('/', api)
@@ -29,6 +31,6 @@ app.get('*', function (req, res) {
 });
 
 const port = 8000
-app.listen(port, function () {
+app.listen(process.env.PORT || PORT, function () {
     console.log(`server running on port ${port}`)
 })
