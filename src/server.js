@@ -30,7 +30,7 @@ app.get('*', function (req, res) {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-const port = 8000
+const PORT = 8000
 app.listen(process.env.PORT || PORT)
 // , function () {
 //     console.log(`server running on port ${port}`)
