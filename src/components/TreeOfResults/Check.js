@@ -11,7 +11,7 @@ class Check extends Component {
   render() {
     return (
       <label>
-        <input checked={this.props.cTOR.checked ? true : false} id="check" type="checkbox" name={this.props.cTOR.name} onClick={this.markAsRead} />
+        <input checked={this.props.cTOR.checked ? true : false} id="check" type="checkbox" name={this.props.cTOR.name} onChange={this.markAsRead} />
         <span></span>
       </label>
     )

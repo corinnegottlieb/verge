@@ -37,3 +37,10 @@
 /* .popup-content {
   width: 75%;
 } */
+
+.tree-icon{  font-size: 190%;
+position: absolute;
+right: 30px;
+top: 50px;
+cursor: pointer;
+}
