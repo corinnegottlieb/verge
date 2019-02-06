@@ -18,9 +18,9 @@ class TORList extends Component {
 
     render() {
         return (
-            <div className="TORList">
+            <div id="TORList">
                 {this.props.lumberYard.savedTORS.map(t  => 
-                    <Link to='./TOR' ><div id={t.name} onClick={this.loadTOR}>{t.name}</div></Link>
+                    <Link to='./TOR'><div className="TORRow" id={t.name} onClick={this.loadTOR}>{t.name}</div></Link>
                 )}
             </div>
         )

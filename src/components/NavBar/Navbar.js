@@ -12,7 +12,7 @@ class NavBar extends Component {
               <div className="brown-text text-darken-4 brand-logo center">.VERGE</div>
             </Link>
             <Link to='./TORList'>
-              <button>Load Saved</button>
+              <button id="loadSaved" className="brown-text text-darken-4 btn-small waves-effect waves-light #4db6ac teal lighten-2">Load Saved</button>
             </Link>
           </div>
         </nav>

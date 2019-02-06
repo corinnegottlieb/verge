@@ -18,4 +18,4 @@ class TreeGraph extends React.Component {
   }
 }
 
-export default TreeGraph
+export default TreeGraph;

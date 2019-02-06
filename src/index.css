@@ -18,13 +18,19 @@ code {
   position: relative;
 }
 
+#TORList {
+  display: grid;
+  grid-template-rows: 1fr;
+  
+}
+
 .pinfalse {
   font-size: 170%;
   position: absolute;
   right: 30px;
   top: 10px;
   cursor: pointer;
-  color: rgb(170, 170, 170);
+  color: rgb(190, 190, 190);
 }
 
 .pintrue {
@@ -42,6 +48,11 @@ code {
   margin: 5px 0;
   background-color: rgb(233, 227, 208);
   font-weight: bold;
+}
+
+#loadSaved {
+  position: relative;
+  left: 85vw;
 }
 #context-menu {
   font-weight: normal

@@ -1,8 +1,8 @@
 const cheerio = require('cheerio');
 const rp = require('request-promise');
 const tempURL = `https://en.wikipedia.org/wiki/Samurai`;
-const tempSearchQuery = `banana`
-const tempSubTopic = 'Early_cultivation'
+const tempSearchQuery = `abraham lincoln`
+const tempSubTopic = '#Prairie_lawyer'
 
 class Scraper {
     constructor() {
@@ -27,12 +27,17 @@ class Scraper {
     async getTopicHTML(url, name) {
         const response = await rp(url)
         const $ = cheerio.load(response)
-        const topicHTML = $(`#${name}`).parent().nextUntil('h3', 'p')
-        let htmlString = ''
+        const topicHTML = $(`${name}`).parent().nextUntil('h3', 'p')
+        let htmlArray = []
         topicHTML.each((i, elem) => 
-            htmlString += $(elem)
+            htmlArray.push($(elem).html())
         )
-        return htmlString
+        return htmlArray
+        // let htmlString = ''
+        // topicHTML.each((i, elem) => 
+        //     htmlString += $(elem)
+        // )
+        // return htmlString
     }
 
     createTopic(html, parent) {
