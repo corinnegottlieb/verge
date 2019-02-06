@@ -31,7 +31,4 @@ app.get('*', function (req, res) {
 });
 
 const PORT = 8000
-app.listen(process.env.PORT || PORT)
-// , function () {
-//     console.log(`server running on port ${port}`)
-// })
+app.listen(process.env.PORT)

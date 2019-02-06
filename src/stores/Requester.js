@@ -26,7 +26,7 @@ class Requester {
         console.log("updated relevance")
     }
     getSubTopicHTML = async (TORName, subTopic) => {
-        const topicHTML = await Axios.get(`/subtopic/`
+        const topicHTML = await Axios.get(`/subtopic`
         , {
             params: {
               TORName: TORName,
