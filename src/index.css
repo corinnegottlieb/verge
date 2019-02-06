@@ -57,8 +57,7 @@ code {
 }
 
 #loadSaved {
-  position: relative;
-  left: 85vw;
+  border-radius: 25px;
 }
 #context-menu {
   font-weight: normal
@@ -95,5 +94,5 @@ code {
   position: inherit
 }
 #searchThing{
-  border-radius: 8px;
+  border-radius: 25px;
 }

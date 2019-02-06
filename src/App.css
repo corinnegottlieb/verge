@@ -1,7 +1,9 @@
 .levelundefined{
   display: none
 }
-
+body{
+  margin: 3px;
+}
 .modal {
   font-size: 12px;
 }
