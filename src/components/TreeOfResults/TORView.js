@@ -10,13 +10,19 @@ class TORView extends Component {
     toggleMenu = (event) => {
         this.props.lumberYard.findTopicByName(event.target.id, this.props.lumberYard.toggleMenu)
     }
+
+    stringCleaner = (str) => {
+        return str.substr(1).replace(/_/gi, ' ')
+    }
     buildHTMLTree = (cTOR) => {
         return (
             <div>
                 <div className={`level${cTOR.level} singleTopic`}
                     onClick={this.toggleMenu}
                     id={cTOR.name}>
-                    {cTOR.name}
+                    {!cTOR.level ?
+                        cTOR.name :
+                        this.stringCleaner(cTOR.name)}
                     <Check cTOR={cTOR} />
                     {cTOR.menu ? <ContextMenu cTOR={cTOR} /> : null}
                 </div>

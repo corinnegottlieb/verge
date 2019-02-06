@@ -34,7 +34,8 @@ class SearchBar extends Component {
           </label>
           <Link to='/TOR'>
             <button onClick={this.sendSearch} id="searchThing"
-              className="brown-text text-darken-4 btn-large waves-effect waves-light #4db6ac teal lighten-2">verge to search</button>
+              className="search-button brown-text text-darken-4 btn-large waves-effect waves-light #4db6ac teal lighten-2">
+              verge to search</button>
           </Link>
         </form>
       </div>
