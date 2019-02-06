@@ -12,7 +12,7 @@ const TOR = require(`../models/TOR`)
 //     let subTopicHTML = await scraper.getTopicData(req.params.searchValue, req.params.subTopicName)
 //     res.send(subTopicHTML)
 // })
-// GET SUBTOPIC HTML FROM WIKIPEDIA PAGE - expirements with axios
+// GET SUBTOPIC HTML FROM WIKIPEDIA PAGE - works with axios as expected
 router.get(`/subtopic/`, async function(req, res) {
     // console.log(req.query)
     const scraper = new Scraper()

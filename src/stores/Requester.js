@@ -33,7 +33,6 @@ class Requester {
               subTopic: subTopic
             }
         })
-        // console.log(topicHTML.data)
         return topicHTML.data
     }
     // post to relevance collection

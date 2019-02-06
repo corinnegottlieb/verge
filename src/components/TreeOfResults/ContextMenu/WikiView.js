@@ -12,8 +12,8 @@ class WikiView extends Component {
     const mainTopic = this.props.lumberYard.currentTOR.name
     const subTopic = this.props.currentTopic.name
     const data = await requester.getSubTopicHTML(mainTopic, subTopic)
-    
     console.log(data)
+    return data
   }
 
   render() {
