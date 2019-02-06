@@ -5,8 +5,8 @@ const api = require(`./server/routes/api`)
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
-//this needs to be changed before deployment:
 app.use(express.static(path.join(__dirname, 'build')));
+//this needs to be changed before deployment:
 // app.use(function (req, res, next) {
 //     res.header('Access-Control-Allow-Origin', '*')
 //     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
@@ -31,6 +31,7 @@ app.get('*', function (req, res) {
 });
 
 const port = 8000
-app.listen(process.env.PORT || PORT, function () {
-    console.log(`server running on port ${port}`)
-})
+app.listen(process.env.PORT || PORT)
+// , function () {
+//     console.log(`server running on port ${port}`)
+// })
