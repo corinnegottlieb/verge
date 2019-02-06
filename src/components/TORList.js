@@ -20,7 +20,7 @@ class TORList extends Component {
         return (
             <div className="TORList">
                 {this.props.lumberYard.savedTORS.map(t  => 
-                    <Link to='./TOR'><div id={t.name} onClick={this.loadTOR}>{t.name}</div></Link>
+                    <Link to='./TOR' ><div id={t.name} onClick={this.loadTOR}>{t.name}</div></Link>
                 )}
             </div>
         )
