@@ -9,8 +9,9 @@ class ContextMenu extends Component {
         return (
             <div id="context-menu">
                 <OpenNote cTOR={this.props.cTOR} />
-                <WikiView currentTopic={this.props.cTOR} />
+                <WikiView />
                 <Remove name={this.props.cTOR.name} />
+               
             </div>
         )
     }

@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 import ContextMenu from './ContextMenu/ContextMenu';
 import TrackTOR from './TrackTOR'
+
 import Check from './Check';
+import { Link } from 'react-router-dom'
 
 @inject("lumberYard")
 @observer
@@ -28,7 +30,7 @@ class TORView extends Component {
                 </div>
                 {cTOR.children ?
                     cTOR.children.map(c =>
-                        <div>{this.buildHTMLTree(c)}</div>
+                        <div key={c.name}>{this.buildHTMLTree(c)}</div>
                     ) :
                     null}
             </div>
@@ -40,6 +42,10 @@ class TORView extends Component {
                 {this.props.currentTOR ?
                     null :
                     <TrackTOR />}
+                    <Link to ="./tree">
+                    <i className="fab fa-pagelines tree-icon"></i>
+                    </Link>
+
                 {this.buildHTMLTree(this.props.lumberYard.currentTOR)}
             </div>
         )
