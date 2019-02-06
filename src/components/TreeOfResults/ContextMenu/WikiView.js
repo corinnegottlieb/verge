@@ -1,13 +1,25 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 import Popup from "reactjs-popup";
+import Requester from '../../../stores/Requester';
+const requester = new Requester();
 
 @inject("lumberYard")
 @observer
 class WikiView extends Component {
 
+  fillHTML = async () => {
+    const mainTopic = this.props.lumberYard.currentTOR.name
+    const subTopic = this.props.currentTopic.name
+    const data = await requester.getSubTopicHTML(mainTopic, subTopic)
+    console.log(data)
+    return data
+  }
+
   render() {
+    this.fillHTML()
     return (
+
     <Popup
     trigger={<button className="open-note-button brown-text text-darken-4 btn-small waves-effect waves-light #4db6ac teal lighten-2">
     <i className="large material-icons">call_made</i>

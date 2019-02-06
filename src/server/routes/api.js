@@ -4,12 +4,19 @@ const router = express.Router()
 const Scraper = require(`../scraper`)
 const TOR = require(`../models/TOR`)
 
-// GET SUBTOPIC HTML FROM WIKIPEDIA PAGE
-router.get(`/subtopic/:searchValue/:subTopicName`, async function(req, res) {
+// // GET SUBTOPIC HTML FROM WIKIPEDIA PAGE
+// router.get(`/subtopic/:searchValue/:subTopicName`, async function(req, res) {
+//     const scraper = new Scraper()
+//     // console.log(req.params.searchValue)
+//     // console.log(req.params.subTopicName)
+//     let subTopicHTML = await scraper.getTopicData(req.params.searchValue, req.params.subTopicName)
+//     res.send(subTopicHTML)
+// })
+// GET SUBTOPIC HTML FROM WIKIPEDIA PAGE - works with axios as expected
+router.get(`/subtopic/`, async function(req, res) {
+    // console.log(req.query)
     const scraper = new Scraper()
-    // console.log(req.params.searchValue)
-    // console.log(req.params.subTopicName)
-    let subTopicHTML = await scraper.getTopicData(req.params.searchValue, req.params.subTopicName)
+    let subTopicHTML = await scraper.getTopicData(req.query.TORName, req.query.subTopic)
     res.send(subTopicHTML)
 })
 
