@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import Requester from '../stores/Requester';
 import { observer, inject } from 'mobx-react';
 import {Link} from 'react-router-dom';
-const requester = new Requester();
+
 
 @inject('lumberYard')
 @observer
