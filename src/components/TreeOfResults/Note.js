@@ -4,7 +4,7 @@ import { observer, inject } from 'mobx-react';
 @inject("lumberYard")
 @observer
 class Note extends Component {
-    
+
     saveNote = () => {
         this.props.lumberYard.updateTOR()
     }
@@ -17,8 +17,12 @@ class Note extends Component {
     render() {
 
         return (
-            <div>
-                <textarea className="note-textarea" name={this.props.cTOR.name} placeholder="Enter notes..." value={this.props.cTOR.note ? this.props.cTOR.note : null} onChange={this.addNote}></textarea>
+            <div className="input-field">
+                <textarea id="textarea1" className="materialize-textarea"
+                    name={this.props.cTOR.name}
+                    value={this.props.cTOR.note ? this.props.cTOR.note : null}
+                    onChange={this.addNote}></textarea>
+                <label for="textarea1">Enter notes...</label>
                 <button name={this.props.cTOR.name} onClick={this.saveNote}>Save</button>
             </div>
         )
@@ -26,3 +30,5 @@ class Note extends Component {
 }
 
 export default Note
+
+// "note-textarea"

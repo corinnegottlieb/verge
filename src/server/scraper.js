@@ -2,6 +2,7 @@ const cheerio = require('cheerio');
 const rp = require('request-promise');
 const tempURL = `https://en.wikipedia.org/wiki/Samurai`;
 const tempSearchQuery = `banana`
+const tempSubTopic = 'Early_cultivation'
 
 class Scraper {
     constructor() {
@@ -21,6 +22,17 @@ class Scraper {
         const $ = cheerio.load(response)
         const toc = $(`#toc`).html()
         return toc
+    }
+
+    async getTopicHTML(url, name) {
+        const response = await rp(url)
+        const $ = cheerio.load(response)
+        const topicHTML = $(`#${name}`).parent().nextUntil('h3', 'p')
+        let htmlString = ''
+        topicHTML.each((i, elem) => 
+            htmlString += $(elem)
+        )
+        return htmlString
     }
 
     createTopic(html, parent) {
@@ -50,6 +62,22 @@ class Scraper {
         return topicObject
     }
 
+    retrieveText(html, name) {
+        const $ = cheerio.load(html)
+        console.log($.html())
+        const topicHTML = $(`#${name}`).html()
+        // console.log(topicHTML)
+        // return topicHTML
+    }
+    
+    async getTopicData(mainTopic, subTopic) {
+        this.searchQuery = mainTopic
+        const url = this.generateURL(this.searchQuery)
+        const html = await this.getTopicHTML(url, subTopic)
+        return html
+        
+    }
+
     async getData(searchQuery) {
         this.searchQuery = searchQuery
         const url = this.generateURL(searchQuery)
@@ -58,7 +86,7 @@ class Scraper {
     }
 
     async test() {
-        const data = await scraper.getData(tempSearchQuery)
+        const data = await scraper.getTopicData(tempSearchQuery, tempSubTopic)
         console.log(data)
         // console.log(data.children[0].children[5].children[1])
     }
