@@ -22,13 +22,15 @@ class Note extends Component {
                     name={this.props.cTOR.name}
                     value={this.props.cTOR.note ? this.props.cTOR.note : null}
                     onChange={this.addNote}></textarea>
-                <label for="textarea1">Enter notes...</label>
-                <button name={this.props.cTOR.name} onClick={this.saveNote}>Save</button>
+                <label for="textarea1">{this.props.cTOR.note ? null : 'Enter notes...'}</label>
+                <button name={this.props.cTOR.name}
+                    onClick={this.saveNote}
+                    className="brown-text text-darken-4 btn-small waves-effect waves-light #4db6ac teal lighten-2">
+                    <i className="large material-icons">save</i>
+                </button>
             </div>
         )
     }
 }
 
 export default Note
-
-// "note-textarea"

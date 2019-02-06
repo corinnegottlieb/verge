@@ -1,6 +1,7 @@
 .levelundefined{
   display: none
 }
+
 .modal {
   font-size: 12px;
 }
@@ -38,9 +39,10 @@
   width: 75%;
 } */
 
-.tree-icon{  font-size: 190%;
-position: absolute;
-right: 30px;
-top: 50px;
-cursor: pointer;
+.tree-icon{
+  font-size: 190%;
+  position: absolute;
+  right: 30px;
+  top: 50px;
+  cursor: pointer;
 }
