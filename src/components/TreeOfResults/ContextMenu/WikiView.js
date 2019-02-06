@@ -9,13 +9,11 @@ const requester = new Requester();
 class WikiView extends Component {
 
   fillHTML = async () => {
-    // console.log('you rang?')
     const mainTopic = this.props.lumberYard.currentTOR.name
-    // console.log(mainTopic)
     const subTopic = this.props.currentTopic.name
-    // console.log(subTopic)
     const data = await requester.getSubTopicHTML(mainTopic, subTopic)
-    // console.log(data)
+    
+    console.log(data)
   }
 
   render() {
