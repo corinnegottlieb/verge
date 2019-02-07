@@ -2,10 +2,13 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const api = require(`./server/routes/api`)
+const path = require(`path`)
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, 'build')));
+console.log(__dirname)
+app.use(express.static(path.join(__dirname, 'node_modules')));
 //this needs to be changed before deployment:
 // app.use(function (req, res, next) {
 //     res.header('Access-Control-Allow-Origin', '*')
@@ -31,4 +34,4 @@ app.get('*', function (req, res) {
 });
 
 const PORT = 8000
-app.listen(process.env.PORT)
+app.listen(process.env.PORT || PORT)

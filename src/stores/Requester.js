@@ -1,9 +1,14 @@
 import Axios from "axios";
 class Requester {
+    // constructor(){
+    //     this.domain = process.env.PORT ? "" : "http://localhost:8000"
+    // }
+
     getAllTrackedTORs = async () => {
-        const trackedTORs = await Axios.get("/tracked")
+        const trackedTORs = await Axios.get(`/tracked`)
         return trackedTORs.data
     }
+
     getTORData = async (name) => {
         const TORData = await Axios.get(`/tracked/${name}`)
         return TORData.data
