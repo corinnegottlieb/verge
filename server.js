@@ -23,7 +23,6 @@ const mongoose = require('mongoose')
 mongoose.connect(process.env.CONNECTION_STRING||'mongodb://localhost/VergeDB')
 
 
-
 app.use('/', api)
 // app.get(`/sanity`, function(req, res) {
 //     console.log(`you are sane`)
