@@ -4,6 +4,7 @@ import './App.css';
 import { observer } from 'mobx-react'
 import NavBar from './components/NavBar/Navbar';
 import TORView from './components/TreeOfResults/TORView';
+import TreeView from './components/TreeOfResults/TreeView';
 import TORList from './components/TORList'
 import TreeGraph from './components/Tree';
 
@@ -15,7 +16,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <NavBar />
-          <Route path="/TOR" exact component={TORView} />
+          <Route path="/TOR" exact component={TreeView} />
           <Route path="/tree" exact component={TreeGraph} />
           <Route path="/TORList" exact component={TORList} />
         </div>

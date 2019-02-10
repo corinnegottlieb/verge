@@ -1,9 +1,12 @@
 import { observable, action, computed } from 'mobx';
 import Requester from './Requester';
+import dummyData from '../DummyData'
 const requester = new Requester();
 
 class LumberYard {
-    @observable currentTOR = { name: '', children: [], tracked: false}
+    // @observable currentTOR = { name: '', children: [], tracked: false}
+    @observable currentRoot = 'abraham lincoln'
+    @observable currentTOR = dummyData
     @observable savedTORS = []
     @observable searchValue = ''
     @observable showNote = false
