@@ -1,7 +1,9 @@
 .levelundefined{
   display: none
 }
-
+body{
+  margin: 2px;
+}
 .modal {
   font-size: 12px;
 }
@@ -35,9 +37,6 @@
   border-radius: 18px;
   border: 1px solid #cfcece;
 }
-/* .popup-content {
-  width: 75%;
-} */
 
 .tree-icon{
   font-size: 190%;

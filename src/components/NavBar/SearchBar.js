@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
-// import Topic from '../TreeOfResults/Topic';
 import { Link } from 'react-router-dom'
 
 @inject("lumberYard")
@@ -34,8 +33,13 @@ class SearchBar extends Component {
           </label>
           <Link to='/TOR'>
             <button onClick={this.sendSearch} id="searchThing"
-              className="search-button brown-text text-darken-4 btn-large waves-effect waves-light #4db6ac teal lighten-2">
+              className="search-button brown-text text-darken-4 btn waves-effect waves-light #4db6ac teal lighten-2">
               verge to search</button>
+          </Link>
+          <Link to='./TORList'>
+            <button id="loadSaved"
+              className="right brown-text text-darken-4 btn-small waves-effect waves-light #4db6ac teal lighten-2">
+              Load Saved</button>
           </Link>
         </form>
       </div>
