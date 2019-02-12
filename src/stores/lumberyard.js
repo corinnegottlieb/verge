@@ -4,9 +4,10 @@ import dummyData from '../DummyData'
 const requester = new Requester();
 
 class LumberYard {
-    // @observable currentTOR = { name: '', children: [], tracked: false}
-    @observable currentRoot = 'abraham lincoln'
-    @observable currentTOR = dummyData
+    currentRoot = ''
+    @observable currentTOR = {'': {name: ''}}
+    // @observable currentRoot = 'abraham lincoln'
+    // @observable currentTOR = dummyData
     @observable savedTORS = []
     @observable searchValue = ''
     @observable showNote = false
@@ -20,7 +21,7 @@ class LumberYard {
     
     @action getNewTOR = async () => {
         let topicData = await requester.getNewTopicData(this.searchValue)
-        console.log(topicData)
+        this.currentRoot = this.searchValue
         this.currentTOR = topicData
     }
     @action toggleMenu = (currentTopic) => {

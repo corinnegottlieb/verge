@@ -118,7 +118,8 @@ class Scraper {
         this.searchQuery = searchQuery
         const url = this.generateURL(searchQuery)
         const html = await this.getHTML(url)
-        return this.createTopic(html)
+        this.createTopic(html)
+        return this.treeNodes
     }
 
     async test() {
@@ -129,7 +130,7 @@ class Scraper {
 
 }
 
-const scraper = new Scraper()
-scraper.test()
+// const scraper = new Scraper()
+// scraper.test()
 
 module.exports = Scraper;

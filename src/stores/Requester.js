@@ -37,5 +37,5 @@ class Requester {
     }
     // post to relevance collection
 }
-export default Requester
+export default Requester;
 
