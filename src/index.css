@@ -18,7 +18,7 @@ code {
   align
 } */
 
-.TORContainer {
+.tree-container {
   position: relative;
 }
 
@@ -92,8 +92,33 @@ code {
   background-color: rgb(233, 227, 208);
   /* width: 200px; */
 }
-
- .level1 {
+.app {
+  position: relative;
+}
+.note{
+  position: absolute;
+  left: 4vw;
+  top: 15vh;
+  width: 90vw;
+  height: 70vh;
+  background-color: whitesmoke;
+  z-index: 10;
+  display: grid;
+  grid-template-rows: 1fr 20fr 1fr;
+}
+.note>.note-text {
+    background-color: whitesmoke;
+    height: 100%;
+    resize: none;
+    border: none;
+}
+.note>.exit-button {
+  justify-self: start;
+}
+.note>.save-button {
+  justify-self: end;
+}
+.level1 {
   margin-inline-start: 35px;
 }
 .level2 {

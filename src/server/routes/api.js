@@ -3,6 +3,8 @@ const router = express.Router()
 // const data = require(`../../DummyData`)
 const Scraper = require(`../scraper`)
 const TOR = require(`../models/TOR`)
+const Topic = require(`../models/Topic`)
+const Tree = require(`../models/Tree`)
 
 // // GET SUBTOPIC HTML FROM WIKIPEDIA PAGE
 // router.get(`/subtopic/:searchValue/:subTopicName`, async function(req, res) {
@@ -42,10 +44,29 @@ router.get('/tracked/:name', async function (req, res) {
 
 // SAVE NEW TREE IN DB
 router.post('/tor', function(req, res){
-    console.log(req.body)
-    let toSave = new TOR(req.body)
+    // console.log(req.body)
+    const tree = req.body.tree
+    const topics = req.body.topics
+    let valArr = Object.values(topics)
+    let toSave
+    valArr.forEach(t => {
+        toSave = new Topic({
+            name: t.name,
+            url: t.url,
+            level: t.level,
+            relevance: t.relevance,
+            tracked: t.tracked,
+            checked: t.checked,
+            note: t.note,
+            renderNote: t.renderNote,
+            renderMenu: t.renderMenu,
+            children: t.children
+        })
+        toSave.save()
+    })
+    toSave = new Tree({name: tree})
     toSave.save()
-    res.send(toSave)
+    res.end()
 })
 
 // UPDATE EXISTING TRACKEDTOR IN DB

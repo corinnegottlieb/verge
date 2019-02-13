@@ -53,7 +53,8 @@ class Scraper {
         topicObject.tracked = false
         topicObject.checked = false
         topicObject.note = ''
-        topicObject.menu = false
+        topicObject.renderNote = false
+        topicObject.renderMenu = false
         this.treeNodes[topicObject.name] = topicObject
         const ulChild = $(`ul`)
         if (ulChild.html() !== null) { //current html has children
