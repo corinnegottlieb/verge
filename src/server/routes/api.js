@@ -73,17 +73,33 @@ router.post('/tor', function(req, res){
 })
 
 // UPDATE EXISTING TRACKEDTOR IN DB
-router.put('/tracked', function(req, res){
-    let toUpdate = new TOR(req.body)
-    console.log(toUpdate.name)
-    TOR.findOneAndDelete({name: toUpdate.name},function(err, data) {
-        toUpdate.save()
-        res.end()
+router.put('/tracked/:tree', async function(req, res){
+    let treeName = req.params.tree
+    await Topic.deleteMany({root: treeName})
+    let valArr = Object.values(req.body)
+    console.log(valArr)
+    let toSave
+    await valArr.forEach(t => {
+        toSave = new Topic({
+            name: t.name,
+            url: t.url,
+            level: t.level,
+            relevance: t.relevance,
+            tracked: t.tracked,
+            checked: t.checked,
+            note: t.note,
+            renderNote: t.renderNote,
+            renderMenu: t.renderMenu,
+            root: t.root,
+            children: t.children
+        })
+        toSave.save()
     })
+    res.end()
 })
 
 //update specific property of specific topic of specific tree
-router.put(`/tracked/:treeName`, async function(req, res) {
+router.put(`/tracked/property/:treeName`, async function(req, res) {
     const updateInfo = req.body
     console.log(updateInfo)
     // const val = updateInfo.propertyVal

@@ -5,16 +5,16 @@ import { observer, inject } from 'mobx-react';
 @observer
 class Check extends Component {
   toggleChecked = () => {
-    this.props.lumberYard.togglePropery(this.props.nodeName, 'checked')
+    this.props.lumberYard.toggleProperty(this.props.nodeName, 'checked')
     return this.props.lumberYard.currentTOR[this.props.lumberYard.currentRoot].tracked
-      ? this.props.lumberYard.updateProperty(this.props.nodName, 'checked')
+      ? this.props.lumberYard.updateProperty(this.props.nodeName, 'checked')
       : null
   }
   render() {
     return (
-      <input type="checkbox"></input>
-        // <input checked={this.props.lumberYard.currentTOR[this.props.nodeName].checked}
-        //                     type="checkbox" className="check" onChange={this.toggleChecked}></input>
+      // <input type="checkbox"></input>
+        <input checked={this.props.lumberYard.currentTOR[this.props.nodeName].checked}
+                            type="checkbox" onChange={this.toggleChecked} />
     )
   }
 }

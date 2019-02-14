@@ -13,6 +13,9 @@ class ContextMenu extends Component {
     }
     removeTopic = () => {
         this.props.lumberYard.removeTopic(this.props.nodeName)
+        return this.props.lumberYard.currentTOR[this.props.lumberYard.currentRoot].tracked
+            ? this.props.lumberYard.updateTOR ()
+            : null
     }
     render() { 
         return (
@@ -20,8 +23,8 @@ class ContextMenu extends Component {
                 <button data-property="renderNote" onClick={this.toggleProperty}>edit note</button>
                 <button onClick={this.removeTopic}>remove subtopic</button>
                 <button>add subtopic</button>
-                <button>peek at source</button>
-                <button>link document</button>
+                {/* <button>peek at source</button>
+                <button>link document</button> */}
             </div>
         )
     }

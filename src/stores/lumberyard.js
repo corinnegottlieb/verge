@@ -27,12 +27,13 @@ class LumberYard {
     }
     @action updateProperty = (nodeName, property) => {
         const propertyVal = this.currentTOR[nodeName][property]
+        console.log(propertyVal)
         const updateInfo = {
             nodeName: nodeName,
             property: property,
             propertyVal: propertyVal
         }
-        // console.log(updateInfo)
+        console.log(updateInfo)
         requester.updateProperty(this.currentRoot, updateInfo)
     }
     @action getTORList = async () => {
@@ -55,9 +56,7 @@ class LumberYard {
         this.cleanTree(this.currentRoot)
     }
     @action updateTOR = async () => {
-        if (this.currentTOR.tracked) {
-            await requester.updateTrackedTOR(this.currentTOR)
-        }
+        await requester.updateTrackedTOR(this.currentRoot, this.currentTOR)
     }
     @action toggleTracked = () => {
         this.currentTOR[this.currentRoot].tracked = !this.currentTOR[this.currentRoot].tracked

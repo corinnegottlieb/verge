@@ -20,11 +20,11 @@ class Requester {
     untrackTOR = async (name) => {
         await Axios.delete(`http://localhost:8000/tracked/${name}`)
     }
-    updateTrackedTOR = async (TOR) => {
-        await Axios.put(`http://localhost:8000/tracked`, TOR)
+    updateTrackedTOR = async (tree, topics) => {
+        await Axios.put(`http://localhost:8000/tracked/${tree}`, topics)
     }
     updateProperty = async (treeName, updateInfo) => {
-        await Axios.put(`http://localhost:8000/tracked/${treeName}`, updateInfo)
+        await Axios.put(`http://localhost:8000/tracked/property/${treeName}`, updateInfo)
     }
     
     updateRelevance = async (id, TOR, bool) => {
