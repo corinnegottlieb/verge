@@ -10,14 +10,18 @@ class Note extends Component {
     toggleNote = () => {
         this.props.lumberYard.toggleProperty(this.props.nodeName, 'renderNote')
     }
-
+    saveNote = () => {
+        return this.props.lumberYard.currentTOR[this.props.lumberYard.currentRoot].tracked
+            ? this.props.lumberYard.updateProperty(this.props.nodeName, 'note')
+            : null
+    }
     render() {
         return (
             <div className="note">
                 <button className="exit-button" onClick={this.toggleNote}>X</button>
                 <textarea value={this.props.lumberYard.currentTOR[this.props.nodeName].note}
                     onChange={this.updateNote} className="note-text"></textarea>
-                <button className="save-button">save</button>
+                <button className="save-button" onClick={this.saveNote}>save</button>
             </div>
         )
     }

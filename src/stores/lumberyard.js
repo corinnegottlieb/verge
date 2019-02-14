@@ -10,18 +10,13 @@ class LumberYard {
     // @observable currentTOR = dummyData
     @observable savedTORS = []
     @observable searchValue = ''
-    @observable showNote = false
 
     @action updateVal = (nodeName, property, value) => {
         this.currentTOR[nodeName][property] = value
     }
-    @action handleInput = (value) => {
-        this.currentNote = value
-    }
     @action handleSearchInput = (value) => {
         this.searchValue = value
     }
-    
     @action getNewTOR = async () => {
         let topicData = await requester.getNewTopicData(this.searchValue)
         this.currentRoot = this.searchValue
@@ -30,28 +25,18 @@ class LumberYard {
     @action toggleProperty = (topicName, property) => {
         this.currentTOR[topicName][property] = !this.currentTOR[topicName][property]
     }
-    @action findTopicByName = (name, func, topic) => {
-        const currentTopic = topic ? topic : this.currentTOR
-        if (currentTopic.name === name) {
-            func(currentTopic)
-        } else if (currentTopic.children) {
-            currentTopic.children.forEach(c => {
-                this.findTopicByName(name, func = func, topic = c)
-            })
-        } 
+    @action updateProperty = (nodeName, property) => {
+        const propertyVal = this.currentTOR[nodeName][property]
+        const updateInfo = {
+            nodeName: nodeName,
+            property: property,
+            propertyVal: propertyVal
+        }
+        // console.log(updateInfo)
+        requester.updateProperty(this.currentRoot, updateInfo)
     }
     @action getTORList = async () => {
         this.savedTORS = await requester.getAllTrackedTORs()
-    }
-    @action findTopicByNameAndMarkAsRead = (name, topic) => {
-        const currentTopic = topic ? topic : this.currentTOR
-        if (currentTopic.name === name) {
-            currentTopic.checked = !currentTopic.checked
-        } else if (currentTopic.children) {
-            currentTopic.children.forEach(c => {
-                this.findTopicByNameAndMarkAsRead(name, c)
-            })
-        }
     }
     @action cleanTree = (nodeName) => {
         const currentNode = this.currentTOR[nodeName]
@@ -69,19 +54,6 @@ class LumberYard {
         delete this.currentTOR[nodeName]
         this.cleanTree(this.currentRoot)
     }
-    @action findTopicByNameAndRemove = (name, topic, parent) => {
-        const currentParent = parent ? parent : null
-        const currentTopic = topic ? topic : this.currentTOR
-        if (currentTopic.name === name) {
-            let index = currentParent.children.indexOf(currentTopic)
-            currentParent.children.splice(index, 1)
-        } else if (currentTopic.children) {
-            let currentParent = currentTopic
-            currentTopic.children.forEach(c => {
-                this.findTopicByNameAndRemove(name, c, currentParent)
-            })
-        }
-    }
     @action updateTOR = async () => {
         if (this.currentTOR.tracked) {
             await requester.updateTrackedTOR(this.currentTOR)
@@ -91,6 +63,8 @@ class LumberYard {
         this.currentTOR[this.currentRoot].tracked = !this.currentTOR[this.currentRoot].tracked
         if (this.currentTOR[this.currentRoot].tracked) {
             requester.trackTOR(this.currentRoot, this.currentTOR)
+        } else {
+            requester.untrackTOR(this.currentRoot)
         }
     }
     @action getAllTrackedTORs = async () => {
@@ -98,21 +72,23 @@ class LumberYard {
         this.savedTORS = trackedTORs
     }
     @action getTORData = async (name) => {
-        let TOR = await requester.getTORData(name)
-        this.currentTOR = TOR
+        const response = await requester.getTORData(name)
+        this.currentRoot = name
+        this.currentTOR = response
+        // console.log(this.currentTOR)
     }
-    @action trackTOR = async () => {
-        this.currentTOR[this.currentRoot].tracked = !this.currentTOR[this.currentRoot].tracked
-        await requester.trackTOR(this.currentTOR)
-    }
-    @action updateTrackedTOR = async () => {
-        let TOR = this.currentTOR.id
-        await requester.updateTrackedTOR(TOR)
-    }
-    @action untrackTOR = async () => {
-        let TOR = this.currentTOR.id
-        await requester.untrackTOR(TOR)
-    }
+    // @action trackTOR = async () => {
+    //     this.currentTOR[this.currentRoot].tracked = !this.currentTOR[this.currentRoot].tracked
+    //     await requester.trackTOR(this.currentTOR)
+    // }
+    // @action updateTrackedTOR = async () => {
+    //     let TOR = this.currentTOR.id
+    //     await requester.updateTrackedTOR(TOR)
+    // }
+    // @action untrackTOR = async () => {
+    //     let TOR = this.currentTOR.id
+    //     await requester.untrackTOR(TOR)
+    // }
 
 }
 

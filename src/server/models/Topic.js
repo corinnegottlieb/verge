@@ -11,6 +11,7 @@ const topicSchema = new Schema({
     note: String,
     renderNote: Boolean,
     renderMenu: Boolean,
+    root: String,
     children: [String]
     // children: [{type: Schema.Types.ObjectId, ref: 'Topic'}]
 })

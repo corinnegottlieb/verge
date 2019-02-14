@@ -24,7 +24,7 @@ router.get(`/subtopic/`, async function(req, res) {
 
 // GET NAME LIST OF ALL SAVED DBs
 router.get('/tracked', async function(req, res){
-   let trackedTORS = await TOR.find({}).select('name')
+   let trackedTORS = await Tree.find({}).select('name')
         res.send(trackedTORS)    
     }) 
 
@@ -38,7 +38,9 @@ router.get(`/topic/:searchValue`, async (req, res) => {
 
 // GETS SPECIFIC SAVED TOR FROM DB
 router.get('/tracked/:name', async function (req, res) {
-    let toSend = await TOR.findOne({name: req.params.name})
+    let tempArr = await Topic.find({root: req.params.name})
+    let toSend = {}
+    tempArr.forEach(t => toSend[t.name] = t)
     res.send(toSend)
 })
 
@@ -60,6 +62,7 @@ router.post('/tor', function(req, res){
             note: t.note,
             renderNote: t.renderNote,
             renderMenu: t.renderMenu,
+            root: t.root,
             children: t.children
         })
         toSave.save()
@@ -79,11 +82,21 @@ router.put('/tracked', function(req, res){
     })
 })
 
+//update specific property of specific topic of specific tree
+router.put(`/tracked/:treeName`, async function(req, res) {
+    const updateInfo = req.body
+    console.log(updateInfo)
+    // const val = updateInfo.propertyVal
+    // const property = updateInfo.property
+    await Topic.findOneAndUpdate({root: req.params.treeName, name: updateInfo.nodeName},
+                                        {[updateInfo.property]: updateInfo.propertyVal})
+    res.end()
+})
+
 // REMOVE TRACKEDTOR FROM DB
-router.delete(`/tracked/:name`, function(req, res){
-    TOR.findOneAndDelete({name: req.params.name}, function(err, found) {
-        console.log(`deleted this object from db: ${found}`)
-    })
+router.delete(`/tracked/:name`, async function(req, res){
+    await Topic.deleteMany({root: req.params.name})
+    await Tree.findOneAndDelete({name: req.params.name})
     res.end()
 })
 

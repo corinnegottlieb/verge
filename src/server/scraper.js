@@ -55,10 +55,11 @@ class Scraper {
         topicObject.note = ''
         topicObject.renderNote = false
         topicObject.renderMenu = false
+        topicObject.root = this.searchQuery
         this.treeNodes[topicObject.name] = topicObject
+        topicObject.children = []
         const ulChild = $(`ul`)
         if (ulChild.html() !== null) { //current html has children
-            topicObject.children = []
             ulChild
                 .children(`li`)
                 .filter(function(i,el) {
@@ -71,33 +72,6 @@ class Scraper {
         }
         return topicObject
     }
-
-    // createTopic(html, parent) { //version that returns nested object
-    //     const $ = cheerio.load(html)
-    //     const isFirst = $.root().find(`div`).first().attr(`class`) === `toctitle`
-    //     const topicObject = {}
-    //     topicObject.name = isFirst ? this.searchQuery : $(`a`).attr(`href`)
-    //     topicObject.url = isFirst ? this.url : `${this.url}${topicObject.name}`
-    //     topicObject.level = isFirst ? 0 : parent.level + 1
-    //     topicObject.relevance = true
-    //     topicObject.tracked = false
-    //     topicObject.checked = false
-    //     topicObject.note = ''
-    //     topicObject.menu = false
-    //     const ulChild = $(`ul`)
-    //     if (ulChild.html() !== null) { //current html has children
-    //         topicObject.children = []
-    //         ulChild
-    //             .children(`li`)
-    //             .filter(function(i,el) {
-    //                 return $(el).parent().html() === ulChild.html() 
-    //             })
-    //             .each((i, element) => {
-    //             topicObject.children.push(this.createTopic($(element).html(), topicObject))
-    //         })
-    //     }
-    //     return topicObject
-    // }
 
     retrieveText(html, name) {
         const $ = cheerio.load(html)

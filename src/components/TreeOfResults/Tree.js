@@ -3,8 +3,8 @@ import { observer, inject } from 'mobx-react';
 import ContextMenu from './ContextMenu/ContextMenu';
 import Note from './Note'
 import TrackTOR from './TrackTOR'
+import Check from './Check'
 
-import Check from './Check';
 import { Link } from 'react-router-dom'
 
 @inject("lumberYard")
@@ -13,11 +13,13 @@ class Tree extends Component {
     toggleContextMenu = (event) => {
         this.props.lumberYard.toggleProperty(event.target.id, 'renderMenu')
     }
-    recursivelyBuildTree(nodeName) {
+    recursivelyBuildTree = (nodeName) => {
         let currentNode = this.props.lumberYard.currentTOR[nodeName]
         return (
-            <div key={currentNode.name} className={`level${currentNode.level}`}>
-                <div className="single-topic" onClick={this.toggleContextMenu} id={currentNode.name}>
+            // <div>{Object.values(this.props.lumberYard.currentTOR).map(t => <div>{t.name}</div>)}</div>
+            <div key={currentNode.name}>
+                <Check nodeName={currentNode.name} />
+                <div className={`single-topic level${currentNode.level}`} onClick={this.toggleContextMenu} id={currentNode.name}>
                     {currentNode.name}
                 </div>
                 {currentNode.renderMenu ? <ContextMenu nodeName={currentNode.name}/> : null}
