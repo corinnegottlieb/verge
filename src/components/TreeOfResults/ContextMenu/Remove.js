@@ -6,8 +6,10 @@ import { observer, inject } from 'mobx-react';
 class Remove extends Component {
 
   remove = (event) => {
-    this.props.lumberYard.findTopicByNameAndRemove(event.target.name)
-    this.props.lumberYard.updateTOR()
+    if (window.confirm('Are you sure you want to mark this as irrelevant?')) {
+      this.props.lumberYard.findTopicByNameAndRemove(event.target.name)
+      this.props.lumberYard.updateTOR()
+    }
   }
   render() {
     return (

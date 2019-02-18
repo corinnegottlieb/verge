@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Requester from '../stores/Requester';
 import { observer, inject } from 'mobx-react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 const requester = new Requester();
 
 @inject('lumberYard')
@@ -19,7 +19,7 @@ class TORList extends Component {
     render() {
         return (
             <div id="TORList">
-                {this.props.lumberYard.savedTORS.map(t  => 
+                {this.props.lumberYard.savedTORS.map(t =>
                     <Link to='./TOR'><div className="TORRow" id={t.name} onClick={this.loadTOR}>{t.name}</div></Link>
                 )}
             </div>
