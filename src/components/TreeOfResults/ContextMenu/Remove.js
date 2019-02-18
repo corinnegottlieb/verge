@@ -4,11 +4,14 @@ import { observer, inject } from 'mobx-react';
 @inject("lumberYard")
 @observer
 class Remove extends Component {
-
+  
   remove = (event) => {
-    this.props.lumberYard.findTopicByNameAndRemove(event.target.name)
-    this.props.lumberYard.updateTOR()
+    if (window.confirm('Are you sure you want to mark this as irrelevant?')) {
+      this.props.lumberYard.findTopicByNameAndRemove(event.target.name)
+      this.props.lumberYard.updateTOR()
+    }
   }
+
   render() {
     return (
       <button className="open-note-button brown-text text-darken-4 btn-small waves-effect waves-light #4db6ac teal lighten-2"
