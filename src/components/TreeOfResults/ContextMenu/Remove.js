@@ -4,9 +4,9 @@ import { observer, inject } from 'mobx-react';
 @inject("lumberYard")
 @observer
 class Remove extends Component {
-  
+
   remove = (event) => {
-    if (window.confirm('Are you sure you want to mark this as irrelevant?')) {
+    if (window.confirm('Are you sure you want to remove this topic?')) {
       this.props.lumberYard.findTopicByNameAndRemove(event.target.name)
       this.props.lumberYard.updateTOR()
     }
